@@ -189,7 +189,7 @@
 \def\authorphone#1{\gdef\@authorphone{#1}}
 \def\specialization#1{\gdef\@specialization{#1}}
 \def\major#1{\gdef\@major{#1}}
-
+\def\mentor#1{\gdef\@mentor{#1}}
 
 \newcommand{\isenglish}[3][\mylanguage]{
     \ifthenelse{\equal{#1}{en}}{#2}{#3}
