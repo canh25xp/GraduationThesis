@@ -450,14 +450,25 @@ UserController -> User: Show Corrected Text
 
 ### 4.3.1 Libraries and Tools
 
-| Purpose       | Tools/Libraries  | Version | URL                                  |
-| ------------- | ---------------- | ------- | ------------------------------------ |
-| IDE           | VSCode           | 1.70    | <https://code.visualstudio.com/>     |
-| Web Framework | Flask            | 2.0.3   | <https://flask.palletsprojects.com/> |
-| Front-End     | Bootstrap        | 5.1     | <https://getbootstrap.com/>          |
-| NLP Library   | SpaCy            | 3.2     | <https://spacy.io/>                  |
-| GEC Models    | T5-Large, GECToR | -       | -                                    |
-| Testing       | pytest           | 7.0     | <https://docs.pytest.org/>           |
+During the development of GecWeb, various tools and libraries were chosen to facilitate an efficient workflow, ensure code quality, and enable seamless deployment.
+Table x.y.z describes the tools and libraries used as well as their versions and URLs for more information.
+
+| Name             | Purpose                                          | Version     | URL                                              |
+| ---------------- | ------------------------------------------------ | ----------- | ------------------------------------------------ |
+| WSL              | Linux environment                                | 2.3.26.0    | <https://learn.microsoft.com/en-us/windows/wsl/> |
+| Neovim           | Text editor/IDE                                  | 0.10.3      | <https://github.com/neovim/neovim>               |
+| Conda            | Package management system/environment management | 24.7.1      | <https://anaconda.org/anaconda/conda>            |
+| Python           | Programming language                             | 3.10.16     | <https://github.com/python/cpython>              |
+| Pyright          | Static Type Checker for Python                   | 1.1.391     | <https://github.com/microsoft/pyright>           |
+| Ruff             | Linter and formatter for Python                  | 0.8.4       | <https://github.com/astral-sh/ruff>              |
+| Pytest           | Unit test frameworks                             | 8.3.4       | <https://github.com/pytest-dev/pytest>           |
+| Curl             | Test API endpoints                               | 8.11.1      | <https://github.com/curl/curl>                   |
+| Windows Terminal | Terminal                                         | 1.21.3231.0 | <https://github.com/microsoft/terminal>          |
+| Tmux             | Terminal Multiplexer                             | 3.5a        | <https://github.com/tmux/tmux/wiki>              |
+| Git              | Version control system                           | 2.45.2      | <https://git-scm.com/>                           |
+| Docker           | Containerization/Virtualization                  | 24.7.0      | <https://www.docker.com/>                        |
+| Flask            | Web Framework                                    | 3.1.0       | <https://flask.palletsprojects.com/>             |
+| Bootstrap        | Front-End                                        | 5.2.3       | <https://getbootstrap.com/>                      |
 
 ### 4.3.2 Achievement
 
