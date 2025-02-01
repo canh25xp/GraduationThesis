@@ -1,3 +1,14 @@
+- Students are required to cite sources for everything that is not written/drawn by themselves, including quotes, images, tables, etc.
+- All figures, tables, formulas, and references in the syllabus must be explained and referenced by the student at least once.
+  It is not acceptable for students to provide arbitrary figures and tables without any description/explanation.
+- Do not present the thesis in bullet points.
+- When it is absolutely necessary to list, use scientific style with Roman numerals (i, ii, iii, ...)
+- Unify the style for all bullet points of all levels used in their report.
+- Use IEEE citing regulations.
+  Only cited documents will appear in the References section.
+  References must have a clear origin and must be from a reliable source.
+  Limit citing references from websites and Wikipedia.
+
 # 1 Introduction
 
 3-6 pages
@@ -163,10 +174,10 @@ From there, design the database depending on the selected database management sy
 List the tools, programming languages, APIs, libraries, IDEs, testing tools, etc. use to develop the application.
 Each tool must be clearly labeled with the version used.
 
-| Purpose | Tools  | URL                            |
-| ------- | ------ | ------------------------------ |
-| IDE     | VSCode | https://code.visualstudio.com/ |
-| ...     | ...    | ...                            |
+| Purpose | Tools  | URL                              |
+| ------- | ------ | -------------------------------- |
+| IDE     | VSCode | <https://code.visualstudio.com/> |
+| ...     | ...    | ...                              |
 
 ### 4.3.2 Achievement
 
