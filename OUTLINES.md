@@ -20,7 +20,7 @@ Based on this analysis, the thesis will identify the key limitations of existing
 
 ## 1.3 Tentative solution
 
-The proposed solution involves the development of ALLECS, a web-based GEC system that integrates state-of-the-art GEC models and combination methods. The system will use a combination of sequence-to-sequence generation and sequence tagging approaches, leveraging models such as T5-Large, GECToR XLNet, and GECToR Roberta. Additionally, the system will incorporate two combination methods: ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
+The proposed solution involves the development of GecWeb, a web-based GEC system that integrates state-of-the-art GEC models and combination methods. The system will use a combination of sequence-to-sequence generation and sequence tagging approaches, leveraging models such as T5-Large, GECToR XLNet, and GECToR Roberta. Additionally, the system will incorporate two combination methods: ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
 
 The main contribution of this thesis is the creation of a lightweight, modular GEC system that can be easily extended to include new models and combination methods. The system will be designed to minimize data transfer overhead, making it suitable for users with slow internet connections. Furthermore, the system will feature a responsive web interface that adapts to different screen sizes, ensuring a seamless user experience on both desktop and mobile devices.
 
@@ -28,15 +28,15 @@ The main contribution of this thesis is the creation of a lightweight, modular G
 
 The rest of this graduation project report is organized as follows.
 
-Chapter 2 presents a detailed survey of the current state of GEC systems, including an analysis of user needs and existing products. This chapter will also outline the functional and non-functional requirements for ALLECS, based on the identified limitations of current systems.
+Chapter 2 presents a detailed survey of the current state of GEC systems, including an analysis of user needs and existing products. This chapter will also outline the functional and non-functional requirements for GecWeb, based on the identified limitations of current systems.
 
-In Chapter 3, I introduce the methodologies and technologies used in the development of ALLECS. This chapter will provide an overview of the sequence-to-sequence and sequence tagging approaches, as well as the combination methods employed in the system. The chapter will also discuss the rationale behind the choice of technologies and their relevance to the requirements outlined in Chapter 2.
+In Chapter 3, I introduce the methodologies and technologies used in the development of GecWeb. This chapter will provide an overview of the sequence-to-sequence and sequence tagging approaches, as well as the combination methods employed in the system. The chapter will also discuss the rationale behind the choice of technologies and their relevance to the requirements outlined in Chapter 2.
 
-Chapter 4 details the design, implementation, and evaluation of ALLECS. This chapter will cover the system's architecture, user interface design, and database design. It will also describe the tools and libraries used in the development process, as well as the testing and deployment of the application.
+Chapter 4 details the design, implementation, and evaluation of GecWeb. This chapter will cover the system's architecture, user interface design, and database design. It will also describe the tools and libraries used in the development process, as well as the testing and deployment of the application.
 
-Chapter 5 presents the solutions and contributions of this thesis, focusing on the innovative aspects of ALLECS and the challenges overcome during its development. This chapter will highlight the system's modularity, lightweight design, and ability to support multiple GEC models and combination methods.
+Chapter 5 presents the solutions and contributions of this thesis, focusing on the innovative aspects of GecWeb and the challenges overcome during its development. This chapter will highlight the system's modularity, lightweight design, and ability to support multiple GEC models and combination methods.
 
-Finally, Chapter 6 concludes the thesis by summarizing the achievements of ALLECS and discussing potential future work. This chapter will also provide an analysis of the system's performance compared to existing GEC tools and suggest directions for further improvement.
+Finally, Chapter 6 concludes the thesis by summarizing the achievements of GecWeb and discussing potential future work. This chapter will also provide an analysis of the system's performance compared to existing GEC tools and suggest directions for further improvement.
 
 # 2. Requirement survey and Analysis
 
@@ -76,7 +76,7 @@ The following table summarizes the comparison of existing GEC systems:
 | **Combination Methods** | No          | No           | No           | No           | No            |
 | **Performance**         | High        | Moderate     | Moderate     | Moderate     | High          |
 
-Based on this analysis, the key features that need to be developed in ALLECS include:
+Based on this analysis, the key features that need to be developed in GecWeb include:
 
 - Support for multiple state-of-the-art GEC models.
 - Integration of system combination methods.
@@ -85,7 +85,7 @@ Based on this analysis, the key features that need to be developed in ALLECS inc
 
 ## 2.2 Functional Overview
 
-ALLECS is designed to provide a user-friendly interface for grammatical error correction, supporting multiple GEC models and combination methods. The high-level functions of ALLECS include:
+GecWeb is designed to provide a user-friendly interface for grammatical error correction, supporting multiple GEC models and combination methods. The high-level functions of GecWeb include:
 
 1. **Base Model Selection**: Users can choose from multiple GEC base models, such as T5-Large, GECToR XLNet, and GECToR Roberta.
 2. **Combination Method Selection**: Users can select system combination methods like ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
@@ -94,11 +94,11 @@ ALLECS is designed to provide a user-friendly interface for grammatical error co
 
 ### Use Case Diagram
 
-The use case diagram for ALLECS is shown below:
+The use case diagram for GecWeb is shown below:
 
 ```
 +-------------------+       +-----------------------+       +-------------------+
-|     User          |       |     ALLECS            |       |     GEC Models    |
+|     User          |       |     GecWeb            |       |     GEC Models    |
 |-------------------|       |-----------------------|       |-------------------|
 | Select Base Model |       | Process Input         |       | Correct Text      |
 | Select Combination|       | Highlight Corrections |       | Combine Outputs   |
@@ -109,8 +109,8 @@ The use case diagram for ALLECS is shown below:
 
 **Actors**:
 
-- **User**: The end-user who interacts with ALLECS to correct text.
-- **ALLECS**: The web application that processes user input and interacts with GEC models.
+- **User**: The end-user who interacts with GecWeb to correct text.
+- **GecWeb**: The web application that processes user input and interacts with GEC models.
 - **GEC Models**: The underlying GEC systems that perform the actual text correction.
 
 **Main Use Cases**:
@@ -128,13 +128,13 @@ The use case diagram for ALLECS is shown below:
 
 **Event Flow**:
 
-1. The user opens the ALLECS web interface.
+1. The user opens the GecWeb web interface.
 2. The user selects one or more base models from the available options (T5-Large, GECToR XLNet, GECToR Roberta).
 3. The system confirms the selection and prepares to process the input text using the selected models.
 
 **Preconditions**:
 
-- The ALLECS web interface is accessible.
+- The GecWeb web interface is accessible.
 - The base models are available and loaded.
 
 ## 2.4 Non-functional requirement
@@ -167,7 +167,7 @@ The use case diagram for ALLECS is shown below:
 
 ## 2.4 Non-functional requirement
 
-The non-functional requirements for ALLECS include:
+The non-functional requirements for GecWeb include:
 
 1. **Performance**: The system should be able to process text corrections quickly, with a target speed of at least 500 words per second on a standard GPU server.
 2. **Reliability**: The system should be highly reliable, with minimal downtime and robust error handling.
@@ -177,11 +177,11 @@ The non-functional requirements for ALLECS include:
    - **Database**: No database is required as the system processes text in real-time.
    - **Technology**: The system will be developed using Python, Flask, and Bootstrap. The GEC models will be hosted on a GPU-powered server for fast inference.
 
-This chapter provides a comprehensive analysis of the current state of GEC systems, user needs, and the functional and non-functional requirements for ALLECS. The next chapter will delve into the methodologies and technologies used to develop the system.
+This chapter provides a comprehensive analysis of the current state of GEC systems, user needs, and the functional and non-functional requirements for GecWeb. The next chapter will delve into the methodologies and technologies used to develop the system.
 
 # 3 Methodology
 
-In this chapter, we introduce the technologies, platforms, and theoretical foundations used in the development of ALLECS. The methodologies chosen are aligned with the requirements outlined in Chapter 2, ensuring that the system is lightweight, modular, and capable of supporting multiple GEC models and combination methods. For each technology or approach, we analyze its relevance to the problem at hand, discuss alternative options, and justify our choices.
+In this chapter, we introduce the technologies, platforms, and theoretical foundations used in the development of GecWeb. The methodologies chosen are aligned with the requirements outlined in Chapter 2, ensuring that the system is lightweight, modular, and capable of supporting multiple GEC models and combination methods. For each technology or approach, we analyze its relevance to the problem at hand, discuss alternative options, and justify our choices.
 
 ## 3.1 Technologies and Platforms
 
@@ -189,7 +189,7 @@ In this chapter, we introduce the technologies, platforms, and theoretical found
 
 **Problem Addressed**: The need for a flexible and extensible programming language to develop a modular GEC system.
 
-**Choice**: Python is the dominant programming language in the field of Natural Language Processing (NLP) due to its simplicity, extensive libraries, and strong community support. Python allows for rapid prototyping and integration of various NLP tools and models, making it an ideal choice for ALLECS.
+**Choice**: Python is the dominant programming language in the field of Natural Language Processing (NLP) due to its simplicity, extensive libraries, and strong community support. Python allows for rapid prototyping and integration of various NLP tools and models, making it an ideal choice for GecWeb.
 
 **Alternatives**: Other programming languages such as Java, C++, or JavaScript could be used. However, Python's extensive NLP libraries (e.g., SpaCy, NLTK) and machine learning frameworks (e.g., TensorFlow, PyTorch) make it the most suitable choice for this project.
 
@@ -201,9 +201,9 @@ In this chapter, we introduce the technologies, platforms, and theoretical found
 
 **Problem Addressed**: The need for a lightweight web framework to build a responsive and accessible user interface.
 
-**Choice**: Flask is a lightweight web framework for Python that allows for the rapid development of web applications. It is well-suited for building RESTful APIs and can handle the front-end and back-end separation required for ALLECS.
+**Choice**: Flask is a lightweight web framework for Python that allows for the rapid development of web applications. It is well-suited for building RESTful APIs and can handle the front-end and back-end separation required for GecWeb.
 
-**Alternatives**: Django is another popular web framework for Python, but it is more heavyweight and comes with features that are unnecessary for a lightweight application like ALLECS. Other alternatives include Node.js or Ruby on Rails, but these would require switching to a different programming language.
+**Alternatives**: Django is another popular web framework for Python, but it is more heavyweight and comes with features that are unnecessary for a lightweight application like GecWeb. Other alternatives include Node.js or Ruby on Rails, but these would require switching to a different programming language.
 
 **Justification**: Flask's minimalistic design and flexibility make it ideal for building a lightweight web application. It allows for easy integration with the back-end GEC models and supports the development of a responsive user interface.
 
@@ -213,7 +213,7 @@ In this chapter, we introduce the technologies, platforms, and theoretical found
 
 **Problem Addressed**: The need for a responsive and accessible user interface that works across different devices, including mobile phones.
 
-**Choice**: Bootstrap is a popular CSS and JavaScript framework that provides pre-designed components and a responsive grid system. It ensures that the ALLECS interface is accessible and works well on devices with varying screen sizes.
+**Choice**: Bootstrap is a popular CSS and JavaScript framework that provides pre-designed components and a responsive grid system. It ensures that the GecWeb interface is accessible and works well on devices with varying screen sizes.
 
 **Alternatives**: Other CSS frameworks like Foundation or Materialize could be used, but Bootstrap is the most widely adopted and has extensive documentation and community support.
 
@@ -227,11 +227,11 @@ In this chapter, we introduce the technologies, platforms, and theoretical found
 
 **Problem Addressed**: The need for a state-of-the-art GEC model that can generate corrected text based on input sentences.
 
-**Choice**: T5 (Text-To-Text Transfer Transformer) is a sequence-to-sequence model that converts all text-based language tasks into a text-to-text format. T5-Large, a variant of T5, has been fine-tuned for grammatical error correction and is one of the base models used in ALLECS.
+**Choice**: T5 (Text-To-Text Transfer Transformer) is a sequence-to-sequence model that converts all text-based language tasks into a text-to-text format. T5-Large, a variant of T5, has been fine-tuned for grammatical error correction and is one of the base models used in GecWeb.
 
 **Alternatives**: Other sequence-to-sequence models like BERT or GPT-3 could be used, but T5's unified framework makes it more suitable for GEC tasks. Additionally, T5 has been specifically adapted for GEC by fine-tuning on the cl.ang-8 dataset.
 
-**Justification**: T5-Large's ability to handle a wide range of text-based tasks and its high performance in GEC tasks make it an ideal choice for ALLECS. Its pre-trained nature allows for efficient fine-tuning on GEC-specific datasets.
+**Justification**: T5-Large's ability to handle a wide range of text-based tasks and its high performance in GEC tasks make it an ideal choice for GecWeb. Its pre-trained nature allows for efficient fine-tuning on GEC-specific datasets.
 
 **Source**: Raffel et al. (2020) introduced T5 and demonstrated its effectiveness in various NLP tasks, including GEC.
 
@@ -239,11 +239,11 @@ In this chapter, we introduce the technologies, platforms, and theoretical found
 
 **Problem Addressed**: The need for a fast and efficient GEC model that can correct text by tagging token transformations.
 
-**Choice**: GECToR models GEC as a sequence tagging task, defining a set of token transformations such as keep, delete, and replace. GECToR XLNet and GECToR Roberta are two variants used in ALLECS.
+**Choice**: GECToR models GEC as a sequence tagging task, defining a set of token transformations such as keep, delete, and replace. GECToR XLNet and GECToR Roberta are two variants used in GecWeb.
 
 **Alternatives**: Other sequence tagging models like CRF (Conditional Random Fields) or BiLSTM-CRF could be used, but GECToR's iterative inference process and high speed make it more suitable for real-time GEC tasks.
 
-**Justification**: GECToR's iterative approach increases both precision and recall, and its inference speed is significantly faster than sequence-to-sequence models. This makes it ideal for a lightweight system like ALLECS.
+**Justification**: GECToR's iterative approach increases both precision and recall, and its inference speed is significantly faster than sequence-to-sequence models. This makes it ideal for a lightweight system like GecWeb.
 
 **Source**: Omelianchuk et al. (2020) introduced GECToR and demonstrated its effectiveness in GEC tasks, particularly in terms of speed and accuracy.
 
@@ -251,19 +251,19 @@ In this chapter, we introduce the technologies, platforms, and theoretical found
 
 **Problem Addressed**: The need to combine multiple GEC models to improve correction accuracy.
 
-**Choice**: ALLECS uses two system combination methods: ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation). ESC formulates the combination task as binary classification, while MEMT aligns and combines outputs from multiple models.
+**Choice**: GecWeb uses two system combination methods: ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation). ESC formulates the combination task as binary classification, while MEMT aligns and combines outputs from multiple models.
 
 **Alternatives**: Other combination methods like ROVER (Recognizer Output Voting Error Reduction) or MBR (Minimum Bayes Risk) could be used, but ESC and MEMT have been shown to achieve state-of-the-art performance in GEC tasks.
 
-**Justification**: ESC and MEMT are specifically designed for GEC and have been proven to outperform other combination methods in terms of accuracy and efficiency. Their integration into ALLECS ensures that the system can leverage the strengths of multiple GEC models.
+**Justification**: ESC and MEMT are specifically designed for GEC and have been proven to outperform other combination methods in terms of accuracy and efficiency. Their integration into GecWeb ensures that the system can leverage the strengths of multiple GEC models.
 
 **Source**: Qorib et al. (2022) introduced ESC and demonstrated its effectiveness in GEC system combination. Heafield and Lavie (2010) introduced MEMT and showed its applicability to GEC tasks.
 
 ## 3.3 Summary
 
-In this chapter, we have introduced the key technologies and theoretical foundations used in the development of ALLECS. Python, Flask, and Bootstrap were chosen for their flexibility, lightweight nature, and ability to support a responsive and accessible user interface. The T5-Large and GECToR models were selected for their state-of-the-art performance in GEC tasks, while ESC and MEMT were chosen as system combination methods to improve correction accuracy. Each choice was justified based on its relevance to the requirements outlined in Chapter 2, ensuring that ALLECS is both efficient and effective.
+In this chapter, we have introduced the key technologies and theoretical foundations used in the development of GecWeb. Python, Flask, and Bootstrap were chosen for their flexibility, lightweight nature, and ability to support a responsive and accessible user interface. The T5-Large and GECToR models were selected for their state-of-the-art performance in GEC tasks, while ESC and MEMT were chosen as system combination methods to improve correction accuracy. Each choice was justified based on its relevance to the requirements outlined in Chapter 2, ensuring that GecWeb is both efficient and effective.
 
-The next chapter will delve into the design and implementation of ALLECS, detailing the system's architecture, user interface, and database design.
+The next chapter will delve into the design and implementation of GecWeb, detailing the system's architecture, user interface, and database design.
 
 # 4 Design, Implementation, and Evaluation
 
@@ -273,13 +273,13 @@ The next chapter will delve into the design and implementation of ALLECS, detail
 
 **Choice**: **Three-Tier Architecture (MVC)**
 
-The three-tier architecture, also known as the Model-View-Controller (MVC) architecture, is chosen for ALLECS due to its modularity and separation of concerns. The three tiers are:
+The three-tier architecture, also known as the Model-View-Controller (MVC) architecture, is chosen for GecWeb due to its modularity and separation of concerns. The three tiers are:
 
 1. **Presentation Layer (View)**: This layer handles the user interface and user interactions. It is responsible for displaying the corrected text and any highlighted corrections to the user.
 2. **Application Layer (Controller)**: This layer manages the business logic, including the selection of GEC models, combination methods, and the processing of user input. It acts as an intermediary between the presentation layer and the data layer.
 3. **Data Layer (Model)**: This layer is responsible for managing the GEC models and their outputs. It handles the interaction with the underlying GEC systems and ensures that the corrected text is returned to the application layer.
 
-**Application to ALLECS**:
+**Application to GecWeb**:
 
 - **Presentation Layer**: The web interface built using Flask and Bootstrap resides in this layer. It is responsible for rendering the input text box, output text box, and correction highlights.
 - **Application Layer**: The Flask RESTful API acts as the controller, handling user requests, managing the selection of GEC models, and coordinating the combination methods.
@@ -430,7 +430,7 @@ UserController -> User: Show Corrected Text
 
 **Packaged Products**:
 
-- **ALLECS Web Application**: A lightweight, responsive web application for grammatical error correction.
+- **GecWeb Web Application**: A lightweight, responsive web application for grammatical error correction.
 - **GEC Models**: Integration of T5-Large, GECToR XLNet, and GECToR Roberta.
 - **Combination Methods**: Implementation of ESC and MEMT for system combination.
 
@@ -482,27 +482,27 @@ UserController -> User: Show Corrected Text
 - **Response Time**: Average response time of 1.2 seconds per correction.
 - **User Feedback**: Positive feedback on the system's ease of use and accuracy.
 
-This chapter provides a detailed overview of the design, implementation, and evaluation of ALLECS. The next chapter will focus on the solutions and contributions of the thesis, highlighting the innovative aspects of the system.
+This chapter provides a detailed overview of the design, implementation, and evaluation of GecWeb. The next chapter will focus on the solutions and contributions of the thesis, highlighting the innovative aspects of the system.
 
 # 5 Solution and Contribution
 
-In this chapter, we present the key contributions and solutions developed during the creation of ALLECS. These contributions address the challenges outlined in earlier chapters and demonstrate the innovative aspects of the system. Each contribution is presented in a separate section, following a structured format: **Introduction/Problem**, **Solution**, and **Results (if any)**. The goal is to highlight the creativity, analytical thinking, and problem-solving skills applied throughout the thesis.
+In this chapter, we present the key contributions and solutions developed during the creation of GecWeb. These contributions address the challenges outlined in earlier chapters and demonstrate the innovative aspects of the system. Each contribution is presented in a separate section, following a structured format: **Introduction/Problem**, **Solution**, and **Results (if any)**. The goal is to highlight the creativity, analytical thinking, and problem-solving skills applied throughout the thesis.
 
 ## 5.1 Lightweight and Modular Architecture
 
 ### 5.1.1 Introduction/Problem
 
-One of the primary challenges in developing ALLECS was to create a system that is both lightweight and modular, ensuring that it can be easily extended with new GEC models and combination methods. Traditional GEC systems often require significant computational resources and are tightly coupled, making them difficult to adapt or scale. Additionally, the system needed to be accessible to users with limited internet bandwidth and mobile devices, particularly in developing countries.
+One of the primary challenges in developing GecWeb was to create a system that is both lightweight and modular, ensuring that it can be easily extended with new GEC models and combination methods. Traditional GEC systems often require significant computational resources and are tightly coupled, making them difficult to adapt or scale. Additionally, the system needed to be accessible to users with limited internet bandwidth and mobile devices, particularly in developing countries.
 
 ### 5.1.2 Solution
 
-To address this challenge, we designed ALLECS using a **three-tier architecture (MVC)** with a clear separation of concerns between the presentation, application, and data layers. The system was further modularized by hosting the GEC models on a separate GPU-powered server, while the web interface runs on a CPU-focused server. This separation ensures that the system remains lightweight and scalable.
+To address this challenge, we designed GecWeb using a **three-tier architecture (MVC)** with a clear separation of concerns between the presentation, application, and data layers. The system was further modularized by hosting the GEC models on a separate GPU-powered server, while the web interface runs on a CPU-focused server. This separation ensures that the system remains lightweight and scalable.
 
 The use of **Flask** for the web interface and **Bootstrap** for the front-end allowed us to create a responsive and accessible user interface that works well on devices with varying screen sizes. The modular design also allows for easy integration of new GEC models and combination methods, as discussed in Section 4.1.
 
 ### 5.1.3 Results
 
-The lightweight and modular architecture of ALLECS has proven to be highly effective. The system can process text corrections at an average speed of **500 words per second** on a standard GPU server, making it suitable for real-time use. The separation of the web interface and GEC models also ensures that the system can be easily extended with new models or combination methods without significant changes to the existing codebase.
+The lightweight and modular architecture of GecWeb has proven to be highly effective. The system can process text corrections at an average speed of **500 words per second** on a standard GPU server, making it suitable for real-time use. The separation of the web interface and GEC models also ensures that the system can be easily extended with new models or combination methods without significant changes to the existing codebase.
 
 ## 5.2 Integration of Multiple GEC Models and Combination Methods
 
@@ -512,19 +512,19 @@ Another challenge was to integrate multiple state-of-the-art GEC models and comb
 
 ### 5.2.2 Solution
 
-We addressed this challenge by implementing **two system combination methods**: **ESC (Edit-based System Combination)** and **MEMT (Multi-Engine Machine Translation)**. ESC formulates the combination task as a binary classification problem, while MEMT aligns and combines outputs from multiple models based on token alignment. Both methods were integrated into the application layer of ALLECS, allowing users to select their preferred combination method.
+We addressed this challenge by implementing **two system combination methods**: **ESC (Edit-based System Combination)** and **MEMT (Multi-Engine Machine Translation)**. ESC formulates the combination task as a binary classification problem, while MEMT aligns and combines outputs from multiple models based on token alignment. Both methods were integrated into the application layer of GecWeb, allowing users to select their preferred combination method.
 
 The integration of multiple GEC models was achieved by designing a **ModelSelector** class that manages the selection and interaction of the models. This class ensures that the outputs from different models are processed and combined efficiently, as described in Section 4.1.3.
 
 ### 5.2.3 Results
 
-The integration of multiple GEC models and combination methods has significantly improved the accuracy of ALLECS. On the **BEA-2019 test set**, the combination of T5-Large, GECToR XLNet, and GECToR Roberta using ESC achieved an **F0.5 score of 78.04**, outperforming individual models. This demonstrates the effectiveness of combining multiple models and the flexibility of the system in supporting different combination methods.
+The integration of multiple GEC models and combination methods has significantly improved the accuracy of GecWeb. On the **BEA-2019 test set**, the combination of T5-Large, GECToR XLNet, and GECToR Roberta using ESC achieved an **F0.5 score of 78.04**, outperforming individual models. This demonstrates the effectiveness of combining multiple models and the flexibility of the system in supporting different combination methods.
 
 ## 5.3 Responsive and Accessible User Interface
 
 ### 5.3.1 Introduction/Problem
 
-A key requirement for ALLECS was to provide a user-friendly interface that is accessible to users with varying levels of technical expertise and devices with different screen sizes. Many existing GEC systems have complex interfaces that are difficult to navigate, particularly for non-technical users. Additionally, the system needed to be usable on mobile devices, which are the primary means of internet access in developing countries.
+A key requirement for GecWeb was to provide a user-friendly interface that is accessible to users with varying levels of technical expertise and devices with different screen sizes. Many existing GEC systems have complex interfaces that are difficult to navigate, particularly for non-technical users. Additionally, the system needed to be usable on mobile devices, which are the primary means of internet access in developing countries.
 
 ### 5.3.2 Solution
 
@@ -540,7 +540,7 @@ The responsive and accessible user interface has been well-received by users, pa
 
 ### 5.4.1 Introduction/Problem
 
-Efficient text processing and correction were critical for ensuring that ALLECS can handle real-time user input without significant delays. Many GEC systems suffer from slow processing speeds, particularly when using large models like T5-Large. This can lead to a poor user experience, especially for users with limited patience or those working under time constraints.
+Efficient text processing and correction were critical for ensuring that GecWeb can handle real-time user input without significant delays. Many GEC systems suffer from slow processing speeds, particularly when using large models like T5-Large. This can lead to a poor user experience, especially for users with limited patience or those working under time constraints.
 
 ### 5.4.2 Solution
 
@@ -550,55 +550,55 @@ We also optimized the **tokenization and detokenization** processes by using **S
 
 ### 5.4.3 Results
 
-The efficient text processing and correction mechanisms have significantly improved the performance of ALLECS. On an **NVIDIA Titan X GPU server**, GECToR Roberta can correct text at a speed of **723 words per second**, while T5-Large achieves a speed of **37 words per second**. These speeds ensure that the system can handle real-time user input without significant delays, providing a smooth user experience.
+The efficient text processing and correction mechanisms have significantly improved the performance of GecWeb. On an **NVIDIA Titan X GPU server**, GECToR Roberta can correct text at a speed of **723 words per second**, while T5-Large achieves a speed of **37 words per second**. These speeds ensure that the system can handle real-time user input without significant delays, providing a smooth user experience.
 
 ## 5.5 Open-Source and Extensible Design
 
 ### 5.5.1 Introduction/Problem
 
-One of the goals of ALLECS was to create an **open-source** system that can be easily extended by other researchers and developers. Many existing GEC systems are proprietary or tightly coupled, making it difficult for others to build upon or modify them. This limits the potential for collaboration and innovation in the field of GEC.
+One of the goals of GecWeb was to create an **open-source** system that can be easily extended by other researchers and developers. Many existing GEC systems are proprietary or tightly coupled, making it difficult for others to build upon or modify them. This limits the potential for collaboration and innovation in the field of GEC.
 
 ### 5.5.2 Solution
 
-To address this challenge, we designed ALLECS as an **open-source** project, with the source code and documentation available on **GitHub**. The system's modular architecture allows for easy integration of new GEC models and combination methods, as discussed in Section 4.1. Additionally, the use of **Python** and **Flask** ensures that the system is accessible to a wide range of developers.
+To address this challenge, we designed GecWeb as an **open-source** project, with the source code and documentation available on **GitHub**. The system's modular architecture allows for easy integration of new GEC models and combination methods, as discussed in Section 4.1. Additionally, the use of **Python** and **Flask** ensures that the system is accessible to a wide range of developers.
 
 We also provided detailed documentation and a **video demonstration** to help other researchers and developers understand and extend the system. The documentation includes instructions for adding new models, combination methods, and user interface components.
 
 ### 5.5.3 Results
 
-The open-source and extensible design of ALLECS has already attracted interest from the research community. The GitHub repository has received **over 100 stars** and **20 forks**, indicating that other researchers are actively exploring and building upon the system. This demonstrates the potential for ALLECS to serve as a foundation for future research and development in the field of GEC.
+The open-source and extensible design of GecWeb has already attracted interest from the research community. The GitHub repository has received **over 100 stars** and **20 forks**, indicating that other researchers are actively exploring and building upon the system. This demonstrates the potential for GecWeb to serve as a foundation for future research and development in the field of GEC.
 
 ## 5.6 Conclusion of Contributions
 
-In this chapter, we have presented the key contributions of ALLECS, including its lightweight and modular architecture, integration of multiple GEC models and combination methods, responsive and accessible user interface, efficient text processing, and open-source design. These contributions address the challenges outlined in earlier chapters and demonstrate the innovative aspects of the system. The results of these contributions, such as the system's high accuracy, fast processing speeds, and positive user feedback, highlight the effectiveness of the solutions developed during this thesis.
+In this chapter, we have presented the key contributions of GecWeb, including its lightweight and modular architecture, integration of multiple GEC models and combination methods, responsive and accessible user interface, efficient text processing, and open-source design. These contributions address the challenges outlined in earlier chapters and demonstrate the innovative aspects of the system. The results of these contributions, such as the system's high accuracy, fast processing speeds, and positive user feedback, highlight the effectiveness of the solutions developed during this thesis.
 
 # 6 Conclusion and Future work
 
 ## 6.1 Conclusion
 
-In this thesis, we have presented **ALLECS (A Lightweight Language Error Correction System)**, a web-based application designed to make state-of-the-art grammatical error correction (GEC) systems accessible to the general public. ALLECS addresses several key challenges in the field of GEC, including the need for a lightweight, modular, and user-friendly system that can be used on devices with varying screen sizes and internet speeds, particularly in developing countries.
+In this thesis, we have presented **GecWeb (A Lightweight Language Error Correction System)**, a web-based application designed to make state-of-the-art grammatical error correction (GEC) systems accessible to the general public. GecWeb addresses several key challenges in the field of GEC, including the need for a lightweight, modular, and user-friendly system that can be used on devices with varying screen sizes and internet speeds, particularly in developing countries.
 
 ### Comparison with Existing Systems
 
-When compared to existing GEC systems such as **Grammarly**, **GECKo+**, and **MiSS**, ALLECS stands out in several ways:
+When compared to existing GEC systems such as **Grammarly**, **GECKo+**, and **MiSS**, GecWeb stands out in several ways:
 
-1. **Accessibility**: Unlike many commercial tools, ALLECS is **open-source** and designed to be lightweight, making it accessible to users with limited internet bandwidth and mobile devices.
-2. **Modularity**: ALLECS supports multiple GEC models (e.g., T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (e.g., ESC, MEMT), allowing users to choose the best approach for their needs. This modularity is not present in many existing systems, which often rely on a single model or approach.
-3. **User Interface**: ALLECS features a **responsive and accessible user interface** that conforms to Web Content Accessibility Guidelines (WCAG) 2.1. The interface includes features such as highlighted corrections and simple explanations, making it easier for users to understand and learn from their mistakes.
-4. **Performance**: ALLECS achieves **state-of-the-art performance** on standard GEC benchmarks, with an F0.5 score of **78.04** on the BEA-2019 test set when using the ESC combination method. This performance is competitive with, and in some cases surpasses, existing systems.
+1. **Accessibility**: Unlike many commercial tools, GecWeb is **open-source** and designed to be lightweight, making it accessible to users with limited internet bandwidth and mobile devices.
+2. **Modularity**: GecWeb supports multiple GEC models (e.g., T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (e.g., ESC, MEMT), allowing users to choose the best approach for their needs. This modularity is not present in many existing systems, which often rely on a single model or approach.
+3. **User Interface**: GecWeb features a **responsive and accessible user interface** that conforms to Web Content Accessibility Guidelines (WCAG) 2.1. The interface includes features such as highlighted corrections and simple explanations, making it easier for users to understand and learn from their mistakes.
+4. **Performance**: GecWeb achieves **state-of-the-art performance** on standard GEC benchmarks, with an F0.5 score of **78.04** on the BEA-2019 test set when using the ESC combination method. This performance is competitive with, and in some cases surpasses, existing systems.
 
 ### Outstanding Contributions
 
 The key contributions of this thesis include:
 
-1. **Lightweight and Modular Architecture**: ALLECS is designed to be lightweight and modular, allowing for easy integration of new GEC models and combination methods. This architecture ensures that the system can be extended and adapted to future advancements in GEC research.
-2. **Integration of Multiple GEC Models and Combination Methods**: ALLECS is one of the first systems to integrate multiple state-of-the-art GEC models and combination methods into a single, user-friendly interface. This integration significantly improves the accuracy and flexibility of the system.
-3. **Responsive and Accessible User Interface**: The user interface of ALLECS is designed to be responsive and accessible, ensuring that it can be used on a wide range of devices, including mobile phones. This is particularly important for users in developing countries, where mobile devices are the primary means of internet access.
-4. **Open-Source Design**: ALLECS is an open-source project, with the source code and documentation available on GitHub. This allows other researchers and developers to build upon and extend the system, fostering collaboration and innovation in the field of GEC.
+1. **Lightweight and Modular Architecture**: GecWeb is designed to be lightweight and modular, allowing for easy integration of new GEC models and combination methods. This architecture ensures that the system can be extended and adapted to future advancements in GEC research.
+2. **Integration of Multiple GEC Models and Combination Methods**: GecWeb is one of the first systems to integrate multiple state-of-the-art GEC models and combination methods into a single, user-friendly interface. This integration significantly improves the accuracy and flexibility of the system.
+3. **Responsive and Accessible User Interface**: The user interface of GecWeb is designed to be responsive and accessible, ensuring that it can be used on a wide range of devices, including mobile phones. This is particularly important for users in developing countries, where mobile devices are the primary means of internet access.
+4. **Open-Source Design**: GecWeb is an open-source project, with the source code and documentation available on GitHub. This allows other researchers and developers to build upon and extend the system, fostering collaboration and innovation in the field of GEC.
 
 ### Lessons Learned
 
-Throughout the development of ALLECS, several important lessons were learned:
+Throughout the development of GecWeb, several important lessons were learned:
 
 1. **Modularity is Key**: Designing a modular system from the outset makes it easier to extend and adapt the system to new models and combination methods.
 2. **User Experience Matters**: A user-friendly interface is critical for the adoption of a GEC system, particularly for non-technical users. Features such as highlighted corrections and simple explanations can significantly enhance the user experience.
@@ -606,22 +606,22 @@ Throughout the development of ALLECS, several important lessons were learned:
 
 ## 6.2 Future work
 
-While ALLECS has achieved significant milestones, there are several areas where future work can further improve the system and expand its capabilities.
+While GecWeb has achieved significant milestones, there are several areas where future work can further improve the system and expand its capabilities.
 
 ### Completing Current Functions/Tasks
 
-1. **Support for Additional Languages**: Currently, ALLECS is limited to English GEC. Future work could involve extending the system to support other languages by incorporating GEC models trained on multilingual datasets.
+1. **Support for Additional Languages**: Currently, GecWeb is limited to English GEC. Future work could involve extending the system to support other languages by incorporating GEC models trained on multilingual datasets.
 2. **Improved Combination Methods**: While ESC and MEMT are effective combination methods, there is room for improvement. Future work could explore more advanced combination techniques, such as reinforcement learning or ensemble learning, to further improve the accuracy of the system.
-3. **Enhanced User Interface**: The user interface of ALLECS could be further enhanced by adding features such as **grammar explanations**, **contextual suggestions**, and **personalized feedback** based on the user's proficiency level.
+3. **Enhanced User Interface**: The user interface of GecWeb could be further enhanced by adding features such as **grammar explanations**, **contextual suggestions**, and **personalized feedback** based on the user's proficiency level.
 
 ### New Directions for Improvement and Upgrading
 
-1. **Real-Time Collaboration**: Future versions of ALLECS could include features for **real-time collaboration**, allowing multiple users to work on the same document simultaneously. This would be particularly useful for educational settings, where students and teachers can collaborate on writing assignments.
-2. **Integration with Other NLP Tools**: ALLECS could be integrated with other NLP tools, such as **machine translation**, **text summarization**, and **sentiment analysis**, to provide a more comprehensive writing assistant.
-3. **Adaptive Learning**: Future work could explore the use of **adaptive learning techniques** to personalize the corrections and feedback provided by ALLECS based on the user's writing style and proficiency level. This would make the system more effective for language learners.
-4. **Deployment on Cloud Platforms**: To further improve accessibility, ALLECS could be deployed on **cloud platforms** such as AWS or Google Cloud, allowing users to access the system from anywhere without the need for local installation.
-5. **User Feedback and Iterative Improvement**: Collecting and analyzing user feedback will be crucial for the continuous improvement of ALLECS. Future work could involve implementing a **feedback mechanism** within the system to gather user input and iteratively improve the system based on real-world usage.
+1. **Real-Time Collaboration**: Future versions of GecWeb could include features for **real-time collaboration**, allowing multiple users to work on the same document simultaneously. This would be particularly useful for educational settings, where students and teachers can collaborate on writing assignments.
+2. **Integration with Other NLP Tools**: GecWeb could be integrated with other NLP tools, such as **machine translation**, **text summarization**, and **sentiment analysis**, to provide a more comprehensive writing assistant.
+3. **Adaptive Learning**: Future work could explore the use of **adaptive learning techniques** to personalize the corrections and feedback provided by GecWeb based on the user's writing style and proficiency level. This would make the system more effective for language learners.
+4. **Deployment on Cloud Platforms**: To further improve accessibility, GecWeb could be deployed on **cloud platforms** such as AWS or Google Cloud, allowing users to access the system from anywhere without the need for local installation.
+5. **User Feedback and Iterative Improvement**: Collecting and analyzing user feedback will be crucial for the continuous improvement of GecWeb. Future work could involve implementing a **feedback mechanism** within the system to gather user input and iteratively improve the system based on real-world usage.
 
 ### Long-Term Vision
 
-The long-term vision for ALLECS is to create a **universal writing assistant** that can be used by anyone, anywhere, to improve their writing skills. By continuing to innovate and expand the capabilities of ALLECS, we hope to make state-of-the-art GEC technology accessible to a global audience, particularly those in developing countries who stand to benefit the most from such tools.
+The long-term vision for GecWeb is to create a **universal writing assistant** that can be used by anyone, anywhere, to improve their writing skills. By continuing to innovate and expand the capabilities of GecWeb, we hope to make state-of-the-art GEC technology accessible to a global audience, particularly those in developing countries who stand to benefit the most from such tools.
