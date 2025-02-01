@@ -49,15 +49,21 @@ Furthermore, the system will feature a responsive web interface that adapts to d
 
 ## 1.4 Thesis organization
 
-The rest of this graduation project report is organized as follows.
+The rest of this graduation thesis is organized as follows.
 
-Chapter 2 presents a detailed survey of the current state of GEC systems, including an analysis of user needs and existing products. This chapter will also outline the functional and non-functional requirements for GecWeb, based on the identified limitations of current systems.
+Chapter 2 presents a detailed survey of the current state of GEC systems, including an analysis of user needs and existing products.
+This chapter will also outline the functional and non-functional requirements for GecWeb, based on the identified limitations of current systems.
 
-In Chapter 3, I introduce the methodologies and technologies used in the development of GecWeb. This chapter will provide an overview of the sequence-to-sequence and sequence tagging approaches, as well as the combination methods employed in the system. The chapter will also discuss the rationale behind the choice of technologies and their relevance to the requirements outlined in Chapter 2.
+In Chapter 3, I introduce the methodologies and technologies used in the development of GecWeb.
+This chapter will provide an overview of the sequence tagging approaches, as well as the combination methods employed in the system.
+The chapter will also discuss the rationale behind the choice of technologies and their relevance to the requirements outlined in Chapter 2.
 
-Chapter 4 details the design, implementation, and evaluation of GecWeb. This chapter will cover the system's architecture, user interface design, and database design. It will also describe the tools and libraries used in the development process, as well as the testing and deployment of the application.
+Chapter 4 discuses in detailed the design, implementation, and evaluation of GecWeb.
+This chapter will cover the system's architecture, user interface design, and database design.
+It will also describe the tools and libraries used in the development process, as well as the testing and deployment of the application.
 
-Chapter 5 presents the solutions and contributions of this thesis, focusing on the innovative aspects of GecWeb and the challenges overcome during its development. This chapter will highlight the system's modularity, lightweight design, and ability to support multiple GEC models and combination methods.
+Chapter 5 presents the solutions and contributions of this thesis, focusing on the innovative aspects of GecWeb and the challenges overcome during its development.
+This chapter will highlight the system's modularity, lightweight design, and ability to support multiple GEC models and combination methods.
 
 Finally, Chapter 6 concludes the thesis by summarizing the achievements of GecWeb and discussing potential future work. This chapter will also provide an analysis of the system's performance compared to existing GEC tools and suggest directions for further improvement.
 
