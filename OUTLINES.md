@@ -34,7 +34,7 @@ This application is specifically designed to function efficiently across differe
 
 ## 1.3 Tentative solution
 
-My proposed solution involves the development of a web application that integrates state-of-the-art GEC models (GECToR-Roberta, GECToR-XlNet and GECToR-Bert) and combination methods (ESC and MEMT).
+My proposed solution involves the development of a web application that leverage state-of-the-art GEC models (GECToR-Roberta, GECToR-XlNet and GECToR-Bert) and combination methods (ESC and MEMT).
 
 Additionally, the system will incorporate two combination methods: ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
 
