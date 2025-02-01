@@ -1,12 +1,16 @@
-> Grammatical Error Correction Using Machine Learning Web Application
+<!--Grammatical Error Correction Using Machine Learning Web Application-->
 
 # 1 Introduction
 
 ## 1.1 Motivation
 
-English has become the de facto language for international communication, with over 1.4 billion speakers worldwide, 75% of whom are non-native speakers. As the number of English-as-a-second-language (ESL) and English-as-a-foreign-language (EFL) speakers continues to grow, the demand for tools to assist these learners in improving their English proficiency is increasing. Grammatical Error Correction (GEC) systems play a crucial role in this context by automatically detecting and correcting errors in written text, including grammatical, orthographic, and word choice errors.
+English is one of the most widely used languages globally, serving as a common medium of communication for over 1.4 billion people worldwide, with almost 75% of them being non-native speakers.
+As the number of English-as-a-second-language (ESL) and English-as-a-foreign-language (EFL) learners continues to grow, the demand for effective language learning tools and resources has increased significantly.
+However, grammatical and spelling errors remain common challenges for many writers, affecting clarity and professionalism.
 
-Despite significant advancements in GEC technology, many state-of-the-art systems remain inaccessible to the general public due to their reliance on command-line interfaces and high-performance computing resources. This creates a barrier for non-technical users, particularly those in developing countries with limited access to advanced technology and slow internet connections. The need for a lightweight, user-friendly GEC system that can be easily accessed via mobile devices is therefore urgent.
+GEC is a task that aims to automatically detect and correct errors that are present in a text, including grammatical errors, orthographic errors, misspellings, word choice errors, etc.
+Despite significant recent advancements in GEC technology, many state-of-the-art systems remain inaccessible to the general public due to their reliance on command-line interfaces and high-performance computing resources.
+This creates a barrier for non-technical users, particularly those in developing countries with limited access to advanced technology and slow internet connections. The need for a lightweight, user-friendly GEC system that can be easily accessed via mobile devices is therefore urgent.
 
 The development of such a system would not only benefit ESL and EFL learners but also native speakers who occasionally make mistakes. Additionally, improved GEC tools can enhance the quality of other natural language processing (NLP) tasks, such as machine translation and speech recognition, thereby contributing to broader advancements in the field of NLP.
 
