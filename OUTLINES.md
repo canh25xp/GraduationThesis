@@ -34,9 +34,13 @@ This application is specifically designed to function efficiently across differe
 
 ## 1.3 Tentative solution
 
-The proposed solution involves the development of GecWeb, a web-based GEC system that integrates state-of-the-art GEC models and combination methods. The system will use a combination of sequence-to-sequence generation and sequence tagging approaches, leveraging models such as T5-Large, GECToR XLNet, and GECToR Roberta. Additionally, the system will incorporate two combination methods: ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
+My proposed solution involves the development of a web application that integrates state-of-the-art GEC models (GECToR-Roberta, GECToR-XlNet and GECToR-Bert) and combination methods (ESC and MEMT).
 
-The main contribution of this thesis is the creation of a lightweight, modular GEC system that can be easily extended to include new models and combination methods. The system will be designed to minimize data transfer overhead, making it suitable for users with slow internet connections. Furthermore, the system will feature a responsive web interface that adapts to different screen sizes, ensuring a seamless user experience on both desktop and mobile devices.
+Additionally, the system will incorporate two combination methods: ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
+
+The main contribution of this thesis is the creation of a lightweight, modular GEC system that can be easily extended to include new models and combination methods.
+The system will be designed to minimize data transfer overhead, making it suitable for users with slow internet connections.
+Furthermore, the system will feature a responsive web interface that adapts to different screen sizes, ensuring a seamless user experience on both desktop and mobile devices.
 
 ## 1.4 Thesis organization
 
