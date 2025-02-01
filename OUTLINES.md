@@ -28,8 +28,9 @@ The main machine translation features of MiSS include: basic machine translation
 For the GEC part, it uses GECToR XLNet for English GEC and GECToR with BERT-chinese and BERT-japanese models for Chinese and Japanese GEC respectively.
 Like GECko+, MiSS also lacks the options of choosing the GEC base models and using system combination methods.
 
-Based on the above analysis, this thesis will aim to develop GecWeb (Grammatical Error Correction Web), a web-based application that makes state-of-the-art GEC systems accessible to the general public.
-The system aims to overcome the limitations of existing GEC tools, such as their reliance on command-line interfaces, lack of support for mobile devices, and limited customization options, by providing a lightweight, user-friendly interface that can be used on devices with varying screen sizes and internet speeds, particularly targeting users in developing countries.
+Based on the above analysis, this thesis aims to develop GecWeb (Grammatical Error Correction Web), a web-based application designed to make state-of-the-art GEC systems more accessible to the general public.
+GecWeb addresses the limitations of existing GEC tools—such as their reliance on command-line interfaces, lack of mobile support, and limited customization—by offering a lightweight, user-friendly interface.
+This application is specifically designed to function efficiently across different screen sizes and varying internet speeds, making it particularly beneficial for users in developing countries.
 
 ## 1.3 Tentative solution
 
