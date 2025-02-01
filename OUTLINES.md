@@ -12,11 +12,24 @@ The development of such a system would not only benefit ESL and EFL learners but
 
 ## 1.2 Objectives and scope of the graduation thesis
 
-The primary objective of this thesis is to develop GecWeb (Grammatical Error Correction Web), a web-based application that makes state-of-the-art GEC systems accessible to the general public. The system aims to overcome the limitations of existing GEC tools by providing a lightweight, user-friendly interface that can be used on devices with varying screen sizes and internet speeds, particularly targeting users in developing countries.
+Currently, there are several web services, such as those provided by Grammarly and John Snow Labs, offer ready-to-use English text correction.
+However, these services are not open-source, limiting their adaptability for deploying different GEC systems.
+Therefore, we will only compare and evaluate some available open-source English correction tools, noticeably, GECko+ and MiSS.
 
-To achieve this, the thesis will first conduct a comprehensive survey of existing GEC systems and user needs. This survey will include an analysis of current products such as Grammarly and GECKo+, as well as open-source tools like MiSS. The survey will highlight the strengths and weaknesses of these systems, particularly in terms of accessibility, usability, and performance.
+GECko+ is an English language assisting tool that corrects mistakes of various types on written texts.
+It combines a sentence level GEC model, GECToR XLNet, and a sentence ordering model.
+When a user inputs a text into the system, it segments the text into sentences and corrects the sentences with GECToR before re-ordering them by the sentence ordering model.
+However, GECko+ lacks the options of choosing the GEC base models and using
+system combination methods.
+It is also unclear how easy it is to extend GECko+ to other GEC systems.
 
-Based on this analysis, the thesis will identify the key limitations of existing GEC systems, such as their reliance on command-line interfaces, lack of support for mobile devices, and limited customization options. The thesis will then propose a solution that addresses these limitations by developing a lightweight web application that supports multiple GEC models and combination methods, ensuring high performance and ease of use.
+MiSS on the other hand is a comprehensive tool for machine translation that includes grammatical error correction as a feature.
+The main machine translation features of MiSS include: basic machine translation, simultaneous machine translation, and back translation for quality evaluation.
+For the GEC part, it uses GECToR XLNet for English GEC and GECToR with BERT-chinese and BERT-japanese models for Chinese and Japanese GEC respectively.
+Like GECko+, MiSS also lacks the options of choosing the GEC base models and using system combination methods.
+
+Based on the above analysis, this thesis will aim to develop GecWeb (Grammatical Error Correction Web), a web-based application that makes state-of-the-art GEC systems accessible to the general public.
+The system aims to overcome the limitations of existing GEC tools, such as their reliance on command-line interfaces, lack of support for mobile devices, and limited customization options, by providing a lightweight, user-friendly interface that can be used on devices with varying screen sizes and internet speeds, particularly targeting users in developing countries.
 
 ## 1.3 Tentative solution
 
@@ -207,7 +220,7 @@ In this chapter, we introduce the technologies, platforms, and theoretical found
 
 **Justification**: Flask's minimalistic design and flexibility make it ideal for building a lightweight web application. It allows for easy integration with the back-end GEC models and supports the development of a responsive user interface.
 
-**Source**: The Flask documentation (https://flask.palletsprojects.com/) provides detailed information on its features and use cases, particularly for building RESTful APIs.
+**Source**: The Flask documentation (<https://flask.palletsprojects.com/>) provides detailed information on its features and use cases, particularly for building RESTful APIs.
 
 ### 3.1.3 Bootstrap Framework
 
@@ -219,7 +232,7 @@ In this chapter, we introduce the technologies, platforms, and theoretical found
 
 **Justification**: Bootstrap's responsive design capabilities align with the requirement for a mobile-friendly interface. It also conforms to Web Content Accessibility Guidelines (WCAG), ensuring that the application is accessible to users with disabilities.
 
-**Source**: The Bootstrap documentation (https://getbootstrap.com/) provides guidelines on building responsive and accessible web interfaces.
+**Source**: The Bootstrap documentation (<https://getbootstrap.com/>) provides guidelines on building responsive and accessible web interfaces.
 
 ## 3.2 Theoretical Foundations
 
@@ -417,14 +430,14 @@ UserController -> User: Show Corrected Text
 
 ### 4.3.1 Libraries and Tools
 
-| Purpose       | Tools/Libraries  | Version | URL                                |
-| ------------- | ---------------- | ------- | ---------------------------------- |
-| IDE           | VSCode           | 1.70    | https://code.visualstudio.com/     |
-| Web Framework | Flask            | 2.0.3   | https://flask.palletsprojects.com/ |
-| Front-End     | Bootstrap        | 5.1     | https://getbootstrap.com/          |
-| NLP Library   | SpaCy            | 3.2     | https://spacy.io/                  |
-| GEC Models    | T5-Large, GECToR | -       | -                                  |
-| Testing       | pytest           | 7.0     | https://docs.pytest.org/           |
+| Purpose       | Tools/Libraries  | Version | URL                                  |
+| ------------- | ---------------- | ------- | ------------------------------------ |
+| IDE           | VSCode           | 1.70    | <https://code.visualstudio.com/>     |
+| Web Framework | Flask            | 2.0.3   | <https://flask.palletsprojects.com/> |
+| Front-End     | Bootstrap        | 5.1     | <https://getbootstrap.com/>          |
+| NLP Library   | SpaCy            | 3.2     | <https://spacy.io/>                  |
+| GEC Models    | T5-Large, GECToR | -       | -                                    |
+| Testing       | pytest           | 7.0     | <https://docs.pytest.org/>           |
 
 ### 4.3.2 Achievement
 
