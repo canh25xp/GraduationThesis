@@ -36,6 +36,13 @@ This application is specifically designed to function efficiently across differe
 
 My proposed solution involves the development of a web application that leverage state-of-the-art GEC models (GECToR-Roberta, GECToR-XlNet and GECToR-Bert) and combination methods, namely ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
 
+The frontend of GecWeb is built using Flask and Bootstrap, providing a lightweight yet responsive web interface.
+Flask was chosen for its simplicity and seamless integration with the backend, while Bootstrap ensures a modern and mobile-friendly user experience.
+The backend is implemented using Flask-RESTful API, which efficiently handles client requests and provides structured API endpoints.
+Flask-RESTful was selected due to its minimal overhead, ease of use, and flexibility in designing scalable web services.
+The core grammatical error correction functionality is powered by GECToR, a transformer-based machine learning model.
+GECToR was chosen because of its state-of-the-art performance in handling complex grammatical errors while maintaining high accuracy and efficiency.
+
 The main contribution of this thesis is the creation of a lightweight, modular GEC system that can be easily extended to include new models and combination methods.
 The system will be designed to minimize data transfer overhead, making it suitable for users with slow internet connections.
 Furthermore, the system will feature a responsive web interface that adapts to different screen sizes, ensuring a seamless user experience on both desktop and mobile devices.
