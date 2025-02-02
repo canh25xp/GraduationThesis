@@ -158,10 +158,13 @@ The use case diagram for GecWeb is shown below:
 
 ```mermaid
 sequenceDiagram
-   User->>GUI: Input sentences
-   GUI->>Backend: Process data
-   Backend->>GUI: Send predictions
-   GUI->>User: Display results
+   participant U as User
+   participant F as Web interface
+   participant B as Gec API
+   U->>F: Input sentences
+   F->>B: Process data
+   B-->>F: Send predictions
+   F-->>U: Display results
 ```
 
 ## 2.3 Functional description
