@@ -56,6 +56,7 @@ Furthermore, the system will feature a responsive web interface that adapts to d
 The rest of this graduation thesis is organized as follows.
 
 <!--Chapter 2 presents a detailed survey of the current state of GEC systems, including an analysis of user needs and existing products.-->
+
 Chapter 2 focuses on presenting an overview of grammatical error correction tasks, analyzing common methods that have been developed in the world.
 This chapter will also outline the functional and non-functional requirements for GecWeb, based on the identified limitations of current systems.
 
@@ -81,44 +82,44 @@ From these analyses, I will underline the functional and non-functional requirem
 
 ### 2.1.1 User/Customer Needs
 
-The primary users of Grammatical Error Correction (GEC) systems are English-as-a-second-language (ESL) learners, English-as-a-foreign-language (EFL) learners, and native speakers who occasionally make grammatical errors. These users require a tool that is easy to use, accessible on multiple devices (especially mobile phones), and capable of providing accurate and understandable corrections. Users in developing countries, in particular, face challenges such as slow internet connections and limited access to high-performance computing resources. Therefore, a lightweight, responsive, and efficient GEC system is highly desirable.
+<!--TODO: Rephrase this subsection-->
+
+Grammatical Error Correction (GEC) is the task of automatically detecting and correcting errors in text.
+The task not only includes the correction of grammatical errors, such as missing prepositions and mismatched subject-verb agreement but also orthographic and semantic errors, such as misspellings and word choice errors.
+The term "Grammatical" Error Correction is thus something of a misnomer but is nevertheless now commonly understood to encompass errors that are not always strictly grammatical in nature.
+A more descriptive term is "Language Error Correction".
+
+The primary users of Grammatical Error Correction (GEC) systems are English-as-a-second-language (ESL) learners, English-as-a-foreign-language (EFL) learners, and native speakers who occasionally make grammatical errors.
+These users require a tool that is easy to use, accessible on multiple devices (especially mobile phones), and capable of providing accurate and understandable corrections.
+Users in developing countries, in particular, face challenges such as slow internet connections and limited access to high-performance computing resources.
+Therefore, a lightweight, responsive, and efficient GEC system is highly desirable.
+
+The advancement of deep learning has also propelled the development of GEC.
+In recent years, numerous error correction methods based on deep learning have been published.
+The next section will introduce the core approaches to the GEC task.
 
 ### 2.1.2 Existing Systems
 
-Several GEC systems are currently available, each with its strengths and weaknesses:
+Several grammatical error correction (GEC) systems are currently available, each with its own strengths and limitations.
+Grammarly is one of the most widely used commercial tools, offering real-time grammar and spell-checking across multiple platforms, including web browsers, mobile apps, and desktop applications.
+Its user-friendly interface makes it accessible to a broad audience.
+However, Grammarly is not open-source, which restricts its customization and integration with other systems.
 
-1. **Grammarly**: A widely used commercial tool that offers real-time grammar and spell-checking. It provides a user-friendly interface and supports multiple platforms, including web browsers, mobile apps, and desktop applications. However, Grammarly is not open-source, limiting its customization and integration with other systems.
+GECKo+ is an open-source tool that integrates a sentence-level GEC model, specifically GECToR XLNet, with a sentence ordering model.
+This combination makes it effective for both grammatical and discourse-level corrections.
+Despite its strengths, GECKo+ lacks the flexibility to allow users to choose different GEC base models or employ system combination methods.
+Similarly, MiSS is a comprehensive machine translation tool that includes GEC as one of its features.
+It also utilizes GECToR XLNet for English GEC while supporting additional languages such as Chinese and Japanese.
+However, like GECKo+, MiSS does not provide options for selecting different GEC models or leveraging system combination techniques.
 
-2. **GECKo+**: An open-source tool that combines a sentence-level GEC model (GECToR XLNet) with a sentence ordering model. While GECKo+ is effective for grammatical and discourse correction, it lacks the flexibility to choose different GEC base models or use system combination methods.
+Other applications offer similar functionalities with varying degrees of effectiveness.
+LanguageTool, for example, is an open-source grammar checker that supports multiple languages.
+While it is highly customizable, it does not incorporate the advanced machine learning models found in state-of-the-art GEC systems.
+ProWritingAid, another commercial writing assistant, provides grammar checking, style suggestions, and readability analysis.
+It is feature-rich but, like Grammarly, remains a closed-source system, limiting its adaptability for specialized use cases.
 
-3. **MiSS**: A comprehensive tool for machine translation that includes GEC as a feature. MiSS uses GECToR XLNet for English GEC and supports other languages like Chinese and Japanese. However, similar to GECKo+, MiSS does not allow users to select different GEC models or combination methods.
-
-### 2.1.3 Similar Applications
-
-Other similar applications include:
-
-- **LanguageTool**: An open-source grammar checker that supports multiple languages. It is highly customizable but lacks the advanced machine learning models used in state-of-the-art GEC systems.
-- **ProWritingAid**: A commercial writing assistant that offers grammar checking, style suggestions, and readability analysis. It is feature-rich but not open-source, limiting its adaptability.
-
-### 2.1.4 Comparison and Evaluation
-
-The following table summarizes the comparison of existing GEC systems:
-
-| Feature/Tool            | Grammarly   | GECKo+       | MiSS         | LanguageTool | ProWritingAid |
-| ----------------------- | ----------- | ------------ | ------------ | ------------ | ------------- |
-| **Open-Source**         | No          | Yes          | Yes          | Yes          | No            |
-| **Mobile Support**      | Yes         | Limited      | Limited      | Limited      | Yes           |
-| **Customization**       | Limited     | Limited      | Limited      | High         | Limited       |
-| **GEC Models**          | Proprietary | GECToR XLNet | GECToR XLNet | Rule-based   | Proprietary   |
-| **Combination Methods** | No          | No           | No           | No           | No            |
-| **Performance**         | High        | Moderate     | Moderate     | Moderate     | High          |
-
-Based on this analysis, the key features that need to be developed in GecWeb include:
-
-- Support for multiple state-of-the-art GEC models.
-- Integration of system combination methods.
-- A lightweight, responsive web interface suitable for mobile devices.
-- Open-source and customizable architecture.
+Given this landscape, the development of GecWeb must focus on several key features to provide a competitive and flexible GEC solution.
+These include (i) support for multiple state-of-the-art GEC models, (ii) integration of system combination methods to enhance correction accuracy, (iii) lightweight, responsive web interface optimized for mobile devices, and (iv) customizable and extensible architecture.
 
 ## 2.2 Functional Overview
 
