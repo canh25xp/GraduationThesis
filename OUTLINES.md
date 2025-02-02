@@ -33,7 +33,7 @@ For the GEC part, it uses GECToR XLNet for English GEC and GECToR with BERT-chin
 Like GECko+, MiSS also lacks the options of choosing the GEC base models and using system combination methods.
 
 Based on the above analysis, this thesis aims to develop GecWeb (Grammatical Error Correction Web), a web-based application designed to make state-of-the-art GEC systems more accessible to the general public.
-GecWeb addresses the limitations of existing GEC tools—such as their reliance on command-line interfaces, lack of mobile support, and limited customization—by offering a lightweight, user-friendly interface.
+GecWeb addresses the limitations of existing GEC tools-such as their reliance on command-line interfaces, lack of mobile support, and limited customization-by offering a lightweight, user-friendly interface.
 This application is specifically designed to function efficiently across different screen sizes and varying internet speeds, making it particularly beneficial for users in developing countries.
 
 ## 1.3 Tentative solution
@@ -121,7 +121,7 @@ It is feature-rich but, like Grammarly, remains a closed-source system, limiting
 Given this landscape, the development of GecWeb must focus on several key features to provide a competitive and flexible GEC solution.
 These include (i) support for multiple state-of-the-art GEC models, (ii) integration of system combination methods to enhance correction accuracy, (iii) lightweight, responsive web interface optimized for mobile devices, and (iv) customizable and extensible architecture.
 
-## 2.2 Functional Overview
+## 2.2 Functional overview
 
 GecWeb is designed to provide a user-friendly interface for grammatical error correction, supporting multiple GEC models and combination methods. The high-level functions of GecWeb include:
 
@@ -129,8 +129,6 @@ GecWeb is designed to provide a user-friendly interface for grammatical error co
 2. **Combination Method Selection**: Users can select system combination methods like ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
 3. **Text Correction**: Users can input text for correction, and the system will output the corrected text with optional highlighted corrections.
 4. **Highlight Corrections**: Users can choose to highlight corrections in the output text, with explanations for each correction.
-
-### Use Case Diagram
 
 The use case diagram for GecWeb is shown below:
 
@@ -175,8 +173,6 @@ The use case diagram for GecWeb is shown below:
 - The GecWeb web interface is accessible.
 - The base models are available and loaded.
 
-## 2.4 Non-functional requirement
-
 **Postconditions**:
 
 - The selected base models are ready to process the input text.
@@ -211,9 +207,8 @@ The non-functional requirements for GecWeb include:
 2. **Reliability**: The system should be highly reliable, with minimal downtime and robust error handling.
 3. **Ease of Use**: The user interface should be intuitive and easy to navigate, even for non-technical users.
 4. **Maintainability**: The system should be modular and easy to extend, allowing for the addition of new GEC models and combination methods.
-5. **Technical Requirements**:
-   - **Database**: No database is required as the system processes text in real-time.
-   - **Technology**: The system will be developed using Python, Flask, and Bootstrap. The GEC models will be hosted on a GPU-powered server for fast inference.
+5. **Security and Privacy**: Secure API communication using HTTPS.
+6. **Technical Requirements**: No database is required as the system processes text in real-time. The GEC models will be hosted on a GPU-powered server for fast inference.
 
 ## 2.5 Conclusion
 
@@ -252,7 +247,7 @@ Bootstrap was used as the front-end framework to ensure a responsive and user-fr
 Bootstrap is a lightweight CSS and JavaScript framework that helps developers to design an interface with accessibility in mind, building a responsive layout and conforming with Web Content Accessibility Guideline (WCAG) 2.1.
 
 Since GecWeb needs to be accessible across different devices, including mobile phones, Bootstrap's responsive grid system and pre-designed components provided a convenient solution.
-While alternative frameworks such as Foundation or Materialize could have been used, Bootstrap’s extensive documentation and widespread adoption made it the most practical choice.
+While alternative frameworks such as Foundation or Materialize could have been used, Bootstrap's extensive documentation and widespread adoption made it the most practical choice.
 Additionally, it adheres to Web Content Accessibility Guidelines (WCAG), ensuring that the user interface remains accessible to all users.
 
 ## 3.2 Technologies and Platforms
