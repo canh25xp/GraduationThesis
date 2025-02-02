@@ -201,14 +201,26 @@ The use case diagram for GecWeb is shown below:
 
 ## 2.4 Non-functional requirement
 
-The non-functional requirements for GecWeb include:
+The non-functional requirements for GecWeb focus on ensuring high performance, reliability, usability, maintainability, security, and efficient technical implementation.
 
-1. **Performance**: The system should be able to process text corrections quickly, with a target speed of at least 500 words per second on a standard GPU server.
-2. **Reliability**: The system should be highly reliable, with minimal downtime and robust error handling.
-3. **Ease of Use**: The user interface should be intuitive and easy to navigate, even for non-technical users.
-4. **Maintainability**: The system should be modular and easy to extend, allowing for the addition of new GEC models and combination methods.
-5. **Security and Privacy**: Secure API communication using HTTPS.
-6. **Technical Requirements**: No database is required as the system processes text in real-time. The GEC models will be hosted on a GPU-powered server for fast inference.
+In terms of performance, the system should be capable of processing text corrections rapidly, with a target speed of at least 500 words per second when running on a standard GPU server.
+This ensures that users experience minimal latency when submitting text for correction, making the application suitable for real-time use.
+
+Reliability is another critical requirement, as GecWeb should maintain high availability with minimal downtime.
+The system must incorporate robust error-handling mechanisms to prevent crashes or unexpected failures, ensuring a seamless user experience even under high load conditions.
+
+To enhance usability, the user interface should be designed for intuitive navigation, making it accessible even to users with limited technical expertise.
+A clean and responsive design will allow users to focus on their text corrections without unnecessary complexity.
+
+Maintainability is also a key consideration.
+The system should follow a modular architecture, making it easy to extend and update.
+This modular approach will facilitate the integration of new grammatical error correction models and combination methods without requiring major modifications to the core system.
+
+Security and privacy are paramount, with all API communications secured using HTTPS to protect user data.
+Since the system processes text in real-time and does not require data storage, privacy concerns related to user-submitted content are minimized.
+
+From a technical perspective, GecWeb is designed to operate without a database, as all text processing occurs in real-time.
+The underlying grammatical error correction models will be hosted on a GPU-powered server to ensure fast inference speeds, supporting high-performance processing while maintaining efficiency.
 
 ## 2.5 Conclusion
 
