@@ -332,27 +332,46 @@ The GECToR models were selected for their state-of-the-art performance in GEC ta
 
 # 4 Design, Implementation, and Evaluation
 
-This chapter delve deep into the design and implementation of GecWeb, detailing the system's architecture, user interface, and database design.
+This chapter delves deep into the design and implementation of GecWeb, detailing the system's architecture and user interface.
 
 ## 4.1 Architecture design
 
 ### 4.1.1 Software architecture selection
 
-**Choice**: **Three-Tier Architecture (MVC)**
+<!--TODO: Rephrase this subsection-->
 
-The three-tier architecture, also known as the Model-View-Controller (MVC) architecture, is chosen for GecWeb due to its modularity and separation of concerns. The three tiers are:
+To make GecWeb more modular, the three-tier architecture, also known as the Model-View-Controller (MVC) architecture, is chosen.
+Three-tier architecture is a well-established software application architecture that organizes applications into three logical and physical computing tiers: the presentation tier, or user interface; the application tier, where data is processed; and the data tier, where application data is stored and managed.
 
-1. **Presentation Layer (View)**: This layer handles the user interface and user interactions. It is responsible for displaying the corrected text and any highlighted corrections to the user.
-2. **Application Layer (Controller)**: This layer manages the business logic, including the selection of GEC models, combination methods, and the processing of user input. It acts as an intermediary between the presentation layer and the data layer.
-3. **Data Layer (Model)**: This layer is responsible for managing the GEC models and their outputs. It handles the interaction with the underlying GEC systems and ensures that the corrected text is returned to the application layer.
+The chief benefit of three-tier architecture is that because each tier runs on its own infrastructure, each tier can be developed simultaneously by a separate development team.
+And can be updated or scaled as needed without impacting the other tiers.
 
-**Application to GecWeb**:
+1. The presentation tier is the user interface and communication layer of the application, where the end user interacts with the application.
+   Its main purpose is to display information to and collect information from the user.
+   This top-level tier can run on a web browser, as desktop application, or a graphical user interface (GUI), for example.
 
-- **Presentation Layer**: The web interface built using Flask and Bootstrap resides in this layer. It is responsible for rendering the input text box, output text box, and correction highlights.
+2. The application tier, also known as the logic tier or middle tier, is the heart of the application.
+   This tier is responsible for processing user input, making logical decisions, and interacting with the data tier.
+   It can also add, delete, or modify data in the data tier.
+
+3. The data tier is the storage layer of the application, where data is stored, retrieved, and managed.
+   This tier can consist of databases, file systems, or other data storage mechanisms.
+   The data tier is responsible for managing the application's data and ensuring data integrity and security.
+
+In a three-tier application, all communication goes through the application tier.
+The presentation tier and the data tier cannot communicate directly with one another.
+
+Apply this architecture to GecWeb:
+
+- **Presentation Layer**: The web interface built using Flask and Bootstrap resides in this layer.
+  It is responsible for rendering the input text box, output text box, and correction highlights.
 - **Application Layer**: The Flask RESTful API acts as the controller, handling user requests, managing the selection of GEC models, and coordinating the combination methods.
-- **Data Layer**: The GEC models (T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer. They process the input text and return the corrected text to the application layer.
+- **Data Layer**: Although no database is used in GecWeb, the GEC models and combination methods are considered part of the data layer in the context of the three-tier architecture.
+  It handles the interaction with the underlying GEC systems and ensures that the corrected text is returned to the application layer.
+  The GEC models (T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer.
 
-**Improvements**: To enhance modularity, the GEC models are hosted on a separate GPU-powered server, allowing the web interface to run on a CPU-focused server. This separation ensures that the system remains lightweight and scalable.
+**Improvements**:
+Although both the GEC models and the web interface can be hosted on the same server, separating them enhances modularity and scalability: the GEC models are hosted on a GPU-powered server, allowing the web interface to run on a CPU-focused server.
 
 ### 4.1.2 Overall design
 
