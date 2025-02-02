@@ -678,6 +678,8 @@ In this chapter, I have presented the key contributions of GecWeb, including its
 
 In this thesis, I have presented GecWeb (A Lightweight Language Error Correction System), a web-based application designed to make state-of-the-art grammatical error correction (GEC) systems accessible to the general public. GecWeb addresses several key challenges in the field of GEC, including the need for a lightweight, modular, and user-friendly system that can be used on devices with varying screen sizes and internet speeds, particularly in developing countries.
 
+Although there was no significant breakthrough in the field of GEC, for the purpose of a graduate thesis, this project was an opportunity to learn and apply the knowledge gained during the time my university.
+
 ### Comparison with Existing Systems
 
 When compared to existing GEC systems such as Grammarly, GECKo+, and MiSS, GecWeb stands out in several ways:
