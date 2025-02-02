@@ -485,8 +485,7 @@ This application does not use any database
 
 ### 4.3.1 Libraries and Tools
 
-During the development of GecWeb, various tools and libraries were chosen to facilitate an efficient workflow, ensure code quality, and enable seamless deployment.
-Table x.y.z describes the tools and libraries used as well as their versions and URLs for more information.
+Table x.y.z provides a comprehensive list of all the tools and libraries that I have used in the development of GecWeb, along with their versions and URLs for more information.
 
 | Name             | Purpose                                          | Version     | URL                                              |
 | ---------------- | ------------------------------------------------ | ----------- | ------------------------------------------------ |
