@@ -156,6 +156,14 @@ The use case diagram for GecWeb is shown below:
 3. **Input Text**: The user inputs the text to be corrected.
 4. **View Corrections**: The user views the corrected text with optional highlighted corrections.
 
+```mermaid
+sequenceDiagram
+   User->>GUI: Input sentences
+   GUI->>Backend: Process data
+   Backend->>GUI: Send predictions
+   GUI->>User: Display results
+```
+
 ## 2.3 Functional description
 
 ### 2.3.1 Use Case A: Select Base Model
