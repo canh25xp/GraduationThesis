@@ -18,16 +18,61 @@ Additionally, improved GEC tools can enhance the quality of other \acrfull{nlp} 
 
 \section{Objectives and scope of the graduation thesis}
 \label{section:objective}
-Given the observations mention in~\ref{section:motivation}, this thesis aims to address the following key challenges and limitations:
 
-\begin{itemize}
-  \item Accessibility: Many existing GEC systems require significant computing resources, making them difficult to use on mobile devices or low-speed internet connections.
-  \item Correction Accuracy: Individual GEC models often struggle with certain grammatical structures, necessitating the need for model combination techniques to enhance performance.
-  \item Usability and Deployment: A practical GEC solution should provide a lightweight, user-friendly web interface that ensures smooth and efficient interaction for a diverse user base.
-\end{itemize}
+Currently, there are several web services, such as those provided by Grammarly and John Snow Labs, offer ready-to-use English text correction.
+However, these services are not open-source, limiting their adaptability for deploying different GEC systems.
+Therefore, I will only compare and evaluate some available open-source English correction tools, noticeably GECko+ and MiSS.
+
+GECko+ is an English language assisting tool that corrects mistakes of various types in written texts.
+It combines a sentence level GEC model, GECToR XLNet, and a sentence ordering model.
+When a user inputs a text into the system, it segments the text into sentences and corrects the sentences with GECToR before re-ordering them by the sentence ordering model.
+However, GECko+ lacks the options of choosing the GEC base models and using
+system combination methods.
+It is also unclear how easy it is to extend GECko+ to other GEC systems.
+
+MiSS, on the other hand, is a comprehensive tool for machine translation that includes grammatical error correction as a feature.
+The main machine translation features of MiSS include basic machine translation, simultaneous machine translation, and back translation for quality evaluation.
+For the GEC part, it uses GECToR XLNet for English GEC and GECToR with BERT-Chinese and BERT-Japanese models for Chinese and Japanese GEC, respectively.
+Like GECko+, MiSS also lacks the options of choosing the GEC base models and using system combination methods.
+
+Based on the above analysis, this thesis aims to develop GecWeb (Grammatical Error Correction Web), a web-based application designed to make state-of-the-art GEC systems more accessible to the general public.
+GecWeb addresses the limitations of existing GEC tools-such as their reliance on command-line interfaces, lack of mobile support, and limited customization-by offering a lightweight, user-friendly interface.
+This application is specifically designed to function efficiently across different screen sizes and varying internet speeds, making it particularly beneficial for users in developing countries.
 
 \section{Tentative solution}
-\label{section:solution}
+\label{section:tentative}
+
+My proposed solution involves the development of a web application that leverage state-of-the-art GEC models (GECToR-Roberta, GECToR-XlNet and GECToR-Bert) and combination methods, namely ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
+
+The front end of GecWeb is built using Flask and Bootstrap, providing a lightweight yet responsive web interface.
+Flask was chosen for its simplicity and seamless integration with the back end, while Bootstrap ensures a modern and mobile-friendly user experience.
+The back-end is implemented using Flask-RESTful API, which efficiently handles client requests and provides structured API endpoints.
+Flask-RESTful was selected due to its minimal overhead, ease of use, and flexibility in designing scalable web services.
+The core grammatical error correction functionality is powered by GECToR, a transformer-based machine learning model.
+GECToR was chosen because of its state-of-the-art performance in handling complex grammatical errors while maintaining high accuracy and efficiency.
+
+The main contribution of this thesis is the creation of a lightweight, modular GEC system that can be easily extended to include new models and combination methods.
+The system will be designed to minimize data transfer overhead, making it suitable for users with slow internet connections.
+Furthermore, the system will feature a responsive web interface that adapts to different screen sizes, ensuring a seamless user experience on both desktop and mobile devices.
 
 \section{Thesis organization}
 \label{section:organization}
+
+The rest of this graduation thesis is organized as follows.
+
+Chapter 2 focuses on presenting a detailed survey of the current state of GEC systems, including an analysis of user needs and existing products.
+This chapter will also outline the functional and non-functional requirements for GecWeb, based on the identified limitations of current systems.
+
+Chapter 3 introduces the methodologies and technologies used in the development of GecWeb.
+This chapter will provide an overview of the sequence tagging approaches, as well as the combination methods employed in the system.
+The chapter will also discuss the rationale behind the choice of technologies and their relevance to the requirements outlined in Chapter 2.
+
+Chapter 4 discusses in detail the design, implementation, and evaluation of GecWeb.
+This chapter will cover the system's architecture, user interface design, and database design.
+It will also describe the tools and libraries used in the development process, as well as the testing and deployment of the application.
+
+Chapter 5 presents the solutions and contributions of this thesis, focusing on the innovative aspects of GecWeb and the challenges overcome during its development.
+This chapter will highlight the system's modularity, lightweight design, and ability to support multiple GEC models and combination methods.
+
+Finally, Chapter 6 concludes the thesis by summarizing the achievements of GecWeb and discussing potential future work.
+This chapter will also provide an analysis of the system's performance compared to existing GEC tools and suggest directions for further improvement.
