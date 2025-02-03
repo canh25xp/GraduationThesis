@@ -119,9 +119,10 @@ It is feature-rich but, like Grammarly, remains a closed-source system, limiting
 Given this landscape, the development of GecWeb must focus on several key features to provide a competitive and flexible GEC solution.
 These include (i) support for multiple state-of-the-art GEC models, (ii) integration of system combination methods to enhance correction accuracy, (iii) lightweight, responsive web interface optimized for mobile devices, and (iv) customizable and extensible architecture.
 
-## 2.2 Functional overview
+## 2.2 Functional requirement
 
-GecWeb is designed to provide a user-friendly interface for grammatical error correction, supporting multiple GEC models and combination methods. The high-level functions of GecWeb include:
+GecWeb is designed to provide a user-friendly interface for grammatical error correction, supporting multiple GEC models and combination methods.
+The high-level functions of GecWeb include:
 
 1. Base Model Selection: Users can choose from multiple GEC base models, such as GECToR-Bert, GECToR XLNet, and GECToR Roberta.
 2. Combination Method Selection: Users can select system combination methods like ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
@@ -165,10 +166,6 @@ sequenceDiagram
    F-->>U: Display results
 ```
 
-## 2.3 Functional description
-
-### 2.3.1 Use Case A: Select Base Model
-
 Use Case Name: Select Base Model
 
 Event Flow:
@@ -185,8 +182,6 @@ Preconditions:
 Postconditions:
 
 - The selected base models are ready to process the input text.
-
-### 2.3.2 Use Case B: Input Text and View Corrections
 
 Use Case Name: Input Text and View Corrections
 
@@ -208,7 +203,7 @@ Postconditions:
 - The corrected text is displayed in the output text box.
 - Corrections are highlighted if the "Highlight corrections" option is selected.
 
-## 2.4 Non-functional requirement
+## 2.3 Non-functional requirement
 
 The non-functional requirements for GecWeb focus on ensuring high performance, reliability, usability, maintainability, security, and efficient technical implementation.
 
@@ -231,7 +226,7 @@ Since the system processes text in real-time and does not require data storage, 
 From a technical perspective, GecWeb is designed to operate without a database, as all text processing occurs in real-time.
 The underlying grammatical error correction models will be hosted on a GPU-powered server to ensure fast inference speeds, supporting high-performance processing while maintaining efficiency.
 
-## 2.5 Conclusion
+## 2.4 Conclusion
 
 In conclusion, this chapter provides a comprehensive analysis of the current state of GEC systems, user needs, and the functional and non-functional requirements for GecWeb.
 The next chapter will delve into the methodologies and technologies used to develop the system.
