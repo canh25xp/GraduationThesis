@@ -325,8 +325,6 @@ This chapter delves deep into the design and implementation of GecWeb, detailing
 
 ## Architecture design
 
-<!--TODO: Rephrase this subsection-->
-
 To make GecWeb more modular, the three-tier architecture, also known as the Model-View-Controller (MVC) architecture, is chosen.
 Three-tier architecture is a well-established software application architecture that organizes applications into three logical and physical computing tiers: the presentation tier, or user interface; the application tier, where data is processed; and the data tier, where application data is stored and managed.
 
@@ -350,21 +348,22 @@ The presentation tier and the data tier cannot communicate directly with one ano
 
 Apply this architecture to GecWeb:
 
-- Presentation Layer: The web interface built using Flask and Bootstrap resides in this layer.
-  It is responsible for rendering the input text box, output text box, and correction highlights.
-- Application Layer: The Flask RESTful API acts as the controller, handling user requests, managing the selection of GEC models, and coordinating the combination methods.
-- Data Layer: Although no database is used in GecWeb, the GEC models and combination methods are considered part of the data layer in the context of the three-tier architecture.
-  It handles the interaction with the underlying GEC systems and ensures that the corrected text is returned to the application layer.
-  The GEC models (T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer.
+1. Presentation Layer: The web interface built using Flask and Bootstrap resides in this layer.
+   It is responsible for rendering the input text box, output text box, and correction highlights.
+2. Application Layer: The Flask RESTful API acts as the controller, handling user requests, managing the selection of GEC models, and coordinating the combination methods.
+3. Data Layer: Although no database is used in GecWeb, the GEC models and combination methods are considered part of the data layer in the context of the three-tier architecture.
+   It handles the interaction with the underlying GEC systems and ensures that the corrected text is returned to the application layer.
+   The GEC models (T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer.
 
-Improvements:
 Although both the GEC models and the web interface can be hosted on the same server, separating them enhances modularity and scalability: the GEC models are hosted on a GPU-powered server, allowing the web interface to run on a CPU-focused server.
 
 ## Detailed design
 
 ### System Design and Implementation
 
-We describe the process flow of GecWeb in Figure 3.
+![Figure 3. The process flow of GecWeb](./diagrams/flowchart.png)
+
+The process flow of GecWeb is described in Figure 3.
 All inputs are first split by line and segmented into sentences.
 The line index for each sentence is recorded to retain the text structure in the output.
 Then, the web interface tokenizes the sentences and combines them into mini-batches to be sent to the base models' API.
@@ -381,25 +380,20 @@ Using ESC to combine base systems only adds a small amount of overhead.
 For example, using ESC to combine GECToR Roberta and T5-Large can correct text at a speed of 32 words
 per second, marginally slower than using T5-Large alone.
 
-![Figure 3. The process flow of GecWeb](./diagrams/flowchart.png)
-
 ### User interface design
 
-Screen Specifications:
+The user interface of GecWeb is designed to be responsive and accessible across various screen resolutions, ensuring a seamless experience for users on different devices.
+The layout adapts to screens as small as 320x480 pixels, commonly found on mobile phones, up to 1920x1080 pixels, which is standard for desktop monitors.
+To maintain accessibility, the color scheme adheres to a contrast ratio above 4.5:1, ensuring readability for users with visual impairments.
 
-- Screen Resolution: The interface is designed to be responsive and works on screens with resolutions ranging from 320x480 (mobile) to 1920x1080 (desktop).
-- Supported Colors: The interface uses a color scheme with a contrast ratio above 4.5:1 to ensure accessibility.
+Consistency and standardization are key aspects of the interface design.
+Buttons maintain a uniform appearance with rounded corners and consistent padding, providing a visually appealing and user-friendly experience.
+The "Run" button, which triggers the grammatical error correction process, is prominently displayed in a contrasting color, making it easily identifiable.
+Feedback messages, including error notifications and success confirmations, appear at the top of the screen, ensuring they are immediately visible to users.
 
-Consistency and Standardization:
-
-- Button Design: Buttons are designed with rounded corners and consistent padding. The "Run" button is prominently displayed in a contrasting color.
-- Feedback Messages: Error messages and success notifications are displayed at the top of the screen, ensuring they are easily visible.
-- Color Scheme: The interface uses a blue and white color scheme, with corrections highlighted in blue for better visibility.
-
-Illustrative Images:
-
-- Figure 1: The main interface shows the input text box, "Run" button, and output text box.
-- Figure 2: The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.
+The color scheme follows a clean and intuitive design, primarily using shades of blue and white.
+Corrections made to the text are highlighted in blue to enhance visibility, allowing users to easily identify the suggested changes.
+This structured approach to design improves usability, ensuring that the interface remains simple, effective, and accessible to a wide range of users.
 
 ## Application Building
 
@@ -423,21 +417,6 @@ Table x.y.z provides a comprehensive list of all the tools and libraries that I 
 | Docker           | Containerization/Virtualization                  | 24.7.0      | <https://www.docker.com/>                        |
 | Flask            | Web Framework                                    | 3.1.0       | <https://flask.palletsprojects.com/>             |
 | Bootstrap        | Front-End                                        | 5.2.3       | <https://getbootstrap.com/>                      |
-
-### Achievement
-
-Packaged Products:
-
-- GecWeb Web Application: A lightweight, responsive web application for grammatical error correction.
-- GEC Models: Integration of T5-Large, GECToR XLNet, and GECToR Roberta.
-- Combination Methods: Implementation of ESC and MEMT for system combination.
-
-Statistical Information:
-
-- Lines of Code: ~5,000
-- Number of Classes: 15
-- Number of Packages: 5
-- Source Code Size: ~10 MB
 
 ### Illustration GecWeb
 
@@ -463,7 +442,7 @@ Users can choose to highlight the corrections by selecting the "Highlight correc
 If the user chooses to highlight the corrections, text spans in the output text that are different from the input text are highlighted in blue and a simple explanation of each correction can be displayed by clicking a highlighted text span.
 The appearance of highlighted corrections can be seen in Figure 2.
 Displaying corrections with simple explanations can help language learners to understand their mistakes better.
-We extracted the corrections with their edit types using ERRANT.
+I extracted the corrections with their edit types using ERRANT.
 
 Figure 2: The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.
 
@@ -474,17 +453,17 @@ The corrected text will then be displayed in the output text box.
 Most recent GEC base systems expect the input to be a single sentence tokenized with SpaCy version 1.9, following the requirement from the BEA-2019 shared task.
 As such, an input text needs to be segmented into sentences and then tokenized with SpaCy before each sentence is given as the input to the GEC model.
 To retain the text structure, it is first split by line before segmented into sentences.
-This way, we can keep the information on which line a sentence should be printed.
-To segment a text into sentences, we follow the practice used in the NUCLE corpus by using the nltk Punkt
+This way, I can keep the information on which line a sentence should be printed.
+To segment a text into sentences, I follow the practice used in the NUCLE corpus by using the nltk Punkt
 tokenizer.
 
 #### Output Text Box
 
 After a text is entered into the input text box and the "Run" button is clicked, the corrected text will appear in the output text box.
 As the base GEC systems are expected to work on tokenized input and output, the output text needs to be detokenized to look more natural.
-Since SpaCy does not have a detokenizer and the document context of the original input may no longer be relevant after a sentence is corrected, we use Moses todetokenize a sentence.
-We found that Moses can detokenize a sentence that is tokenized by SpaCy reasonably well, only missing some cases like the detokenization of "is n't" and "are n;t" and removing spaces around hyphens.
-For these missed cases, we create simple rules to apply string replacement after Moses detokenization.
+Since SpaCy does not have a detokenizer and the document context of the original input may no longer be relevant after a sentence is corrected, I use Moses todetokenize a sentence.
+I found that Moses can detokenize a sentence that is tokenized by SpaCy reasonably well, only missing some cases like the detokenization of "is n't" and "are n;t" and removing spaces around hyphens.
+For these missed cases, I create simple rules to apply string replacement after Moses detokenization.
 Detokenization is not applied if the user chooses to highlight the corrections because the highlights need some room to make them clearly visible.
 
 ## Testing
@@ -507,45 +486,29 @@ The tests are triggered automatically whenever code is pushed to the main branch
 
 Finally, manual API testing is conducted using curl to interact with the back-end API directly, further confirming the proper functioning of the web service.
 
-Test Cases:
-
-1. Test Case 1: Base Model Selection
-
-   - Input: Select T5-Large as the base model.
-   - Expected Output: The system processes the input text using T5-Large.
-   - Result: Pass
-
-2. Test Case 2: Combination Method Selection
-
-   - Input: Select ESC as the combination method.
-   - Expected Output: The system combines outputs from multiple models using ESC.
-   - Result: Pass
-
-3. Test Case 3: Highlight Corrections
-   - Input: Enable "Highlight corrections" option.
-   - Expected Output: Corrections are highlighted in blue, and explanations are displayed.
-   - Result: Pass
-
-Summary: All test cases passed successfully, confirming the functionality of the main features.
-
 ## Deployment
 
-Deployment Model:
+The deployment of GecWeb is designed to ensure efficient access to grammatical error correction while leveraging the computing power of GPU-focused servers.
+The system consists of two main components: the Gec API, which handles the processing of text corrections, and the Gec Web interface, which provides users with an interactive front end to access the correction features.
 
-- Server: The application is deployed on an NVIDIA Titan X GPU server with 12GB memory.
-- Configuration: The web interface runs on a CPU-focused server, while the GEC models are hosted on the GPU server for fast inference.
+The Gec API is hosted on Hugging Face Inference Endpoints, which provide dedicated GPU resources to efficiently run deep learning models.
+Since grammatical error correction models, such as GECToR, require significant computational power for inference, deploying the API on GPU-accelerated infrastructure ensures fast response times and scalability.
+By hosting the API on Hugging Face Inference Endpoints, the system benefits from automatic scaling, secure deployment, and optimized performance without requiring extensive server management.
 
-Test Implementation Results:
+The Gec Web interface is hosted separately on Hugging Face Spaces, a platform designed for hosting interactive web applications.
+Spaces allow developers to easily deploy front-end applications built with frameworks like Flask and Bootstrap, providing a simple way to share machine-learning models with the public.
+Hosting GecWeb on Spaces ensures that users can access the interface without requiring local installations, making the system widely accessible.
+The front-end communicates with the Gec API by sending text data for processing and receiving corrected outputs, ensuring a seamless and responsive user experience.
 
-- Number of Users: 100 concurrent users
-- Response Time: Average response time of 1.2 seconds per correction.
-- User Feedback: Positive feedback on the system's ease of use and accuracy.
+By separating the back-end processing from the front-end interface, the deployment strategy optimizes performance and usability.
+The API benefits from high-performance GPUs, while the web interface remains lightweight and accessible through any modern browser.
+This cloud-based approach allows for easy updates, maintenance, and potential future expansions, making GecWeb an efficient and user-friendly platform for grammatical error correction.
 
-This chapter provides a detailed overview of the design, implementation, and evaluation of GecWeb. The next chapter will focus on the solutions and contributions of the thesis, highlighting the innovative aspects of the system.
+## Conclusion
 
 # Solution and Contribution
 
-In this chapter, I present the key contributions and solutions developed during the creation of GecWeb.
+In this chapter, I present the key contributions and solutions of this thesis.
 These contributions address the challenges outlined in earlier chapters and demonstrate the innovative aspects of the system.
 
 ## Lightweight and Modular Architecture
