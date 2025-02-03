@@ -35,3 +35,9 @@ pandoc --filter mermaid-filter -o outlines.pdf OUTLINES.md
 ```sh
 pandoc -f markdown -t latex --wrap=preserve --top-level-division=chapter -o outline.tex OUTLINES.md
 ```
+
+## Export mermaid diagram
+
+```sh
+mmdc -i diagrams/usecase1.mmd -o diagrams/usecase1.png # or .pdf, .svg
+```
