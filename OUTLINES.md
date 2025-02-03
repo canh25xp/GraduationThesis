@@ -524,56 +524,9 @@ In conclusion, the development of GecWeb represents a significant contribution t
 
 # Conclusion and Future work
 
-## Conclusion
+In this thesis, I have presented GecWeb, a web-based application for GEC that can be easily used by the general public.
+GecWeb designed to be accessible to as many users as possible, including users who have a slow Internet connection and who use mobile phones as their main devices to connect to the Internet.
+In GecWeb, I provide three base GEC systems using sequence tagging, as well as two GEC system combination methods from two types of approaches, edit-based and text-based combination.
+GecWeb is separated into two parts to make the application modular and easily extensible to other base GEC systems.
 
-In this thesis, I have presented GecWeb (A Lightweight Language Error Correction System), a web-based application designed to make state-of-the-art grammatical error correction (GEC) systems accessible to the general public. GecWeb addresses several key challenges in the field of GEC, including the need for a lightweight, modular, and user-friendly system that can be used on devices with varying screen sizes and internet speeds, particularly in developing countries.
-
-Although there was no significant breakthrough in the field of GEC, for the purpose of a graduate thesis, this project was an opportunity to learn and apply the knowledge gained during my time at my university.
-
-### Comparison with Existing Systems
-
-When compared to existing GEC systems such as Grammarly, GECKo+, and MiSS, GecWeb stands out in several ways:
-
-1. Accessibility: Unlike many commercial tools, GecWeb is open-source and designed to be lightweight, making it accessible to users with limited internet bandwidth and mobile devices.
-2. Modularity: GecWeb supports multiple GEC models (e.g., T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (e.g., ESC, MEMT), allowing users to choose the best approach for their needs. This modularity is not present in many existing systems, which often rely on a single model or approach.
-3. User Interface: GecWeb features a responsive and accessible user interface that conforms to Web Content Accessibility Guidelines (WCAG) 2.1. The interface includes features such as highlighted corrections and simple explanations, making it easier for users to understand and learn from their mistakes.
-4. Performance: GecWeb achieves state-of-the-art performance on standard GEC benchmarks, with an F0.5 score of 78.04 on the BEA-2019 test set when using the ESC combination method. This performance is competitive with, and in some cases surpasses, existing systems.
-
-### Outstanding Contributions
-
-The key contributions of this thesis include:
-
-1. Lightweight and Modular Architecture: GecWeb is designed to be lightweight and modular, allowing for easy integration of new GEC models and combination methods. This architecture ensures that the system can be extended and adapted to future advancements in GEC research.
-2. Integration of Multiple GEC Models and Combination Methods: GecWeb is one of the first systems to integrate multiple state-of-the-art GEC models and combination methods into a single, user-friendly interface. This integration significantly improves the accuracy and flexibility of the system.
-3. Responsive and Accessible User Interface: The user interface of GecWeb is designed to be responsive and accessible, ensuring that it can be used on a wide range of devices, including mobile phones. This is particularly important for users in developing countries, where mobile devices are the primary means of internet access.
-4. Open-Source Design: GecWeb is an open-source project, with the source code and documentation available on GitHub. This allows other researchers and developers to build upon and extend the system, fostering collaboration and innovation in the field of GEC.
-
-### Lessons Learned
-
-Throughout the development of GecWeb, several important lessons were learned:
-
-1. Modularity is Key: Designing a modular system from the outset makes it easier to extend and adapt the system to new models and combination methods.
-2. User Experience Matters: A user-friendly interface is critical for the adoption of a GEC system, particularly for non-technical users. Features such as highlighted corrections and simple explanations can significantly enhance the user experience.
-3. Performance vs. Accessibility: Balancing performance and accessibility is a key challenge in developing a lightweight GEC system. Techniques such as mini-batch processing and GPU acceleration can help achieve this balance.
-
-## Future work
-
-While GecWeb has achieved significant milestones, there are several areas where future work can further improve the system and expand its capabilities.
-
-### Completing Current Functions/Tasks
-
-1. Support for Additional Languages: Currently, GecWeb is limited to English GEC. Future work could involve extending the system to support other languages by incorporating GEC models trained on multilingual datasets.
-2. Improved Combination Methods: While ESC and MEMT are effective combination methods, there is room for improvement. Future work could explore more advanced combination techniques, such as reinforcement learning or ensemble learning, to further improve the accuracy of the system.
-3. Enhanced User Interface: The user interface of GecWeb could be further enhanced by adding features such as grammar explanations, contextual suggestions, and personalized feedback based on the user's proficiency level.
-
-### New Directions for Improvement and Upgrading
-
-1. Real-Time Collaboration: Future versions of GecWeb could include features for real-time collaboration, allowing multiple users to work on the same document simultaneously. This would be particularly useful for educational settings, where students and teachers can collaborate on writing assignments.
-2. Integration with Other NLP Tools: GecWeb could be integrated with other NLP tools, such as machine translation, text summarization, and sentiment analysis, to provide a more comprehensive writing assistant.
-3. Adaptive Learning: Future work could explore the use of adaptive learning techniques to personalize the corrections and feedback provided by GecWeb based on the user's writing style and proficiency level. This would make the system more effective for language learners.
-4. Deployment on Cloud Platforms: To further improve accessibility, GecWeb could be deployed on cloud platforms such as AWS or Google Cloud, allowing users to access the system from anywhere without the need for local installation.
-5. User Feedback and Iterative Improvement: Collecting and analyzing user feedback will be crucial for the continuous improvement of GecWeb. Future work could involve implementing a feedback mechanism within the system to gather user input and iteratively improve the system based on real-world usage.
-
-### Long-Term Vision
-
-The long-term vision for GecWeb is to create a universal writing assistant that can be used by anyone, anywhere, to improve their writing skills. By continuing to innovate and expand the capabilities of GecWeb, I hope to make state-of-the-art GEC technology accessible to a global audience, particularly those in developing countries who stand to benefit the most from such tools.
+GecWeb is currently limited to English GEC systems, but it can be extended to other languages by incorporating base GEC models for other languages and modifying the pre-processing and post processing steps.
