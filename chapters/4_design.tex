@@ -35,7 +35,7 @@ Apply this architecture to GecWeb:
   \item Application Layer: The Flask RESTful API acts as the controller, handling user requests, managing the selection of GEC models, and coordinating the combination methods.
   \item Data Layer: Although no database is used in GecWeb, the GEC models and combination methods are considered part of the data layer in the context of the three-tier architecture.
         It handles the interaction with the underlying GEC systems and ensures that the corrected text is returned to the application layer.
-        The GEC models (T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer.
+        The GEC models (GECToR-Bert, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer.
 \end{enumerate}
 
 Although both the GEC models and the web interface can be hosted on the same server, separating them enhances modularity and scalability: the GEC models are hosted on a GPU-powered server, allowing the web interface to run on a CPU-focused server.
@@ -63,10 +63,9 @@ Otherwise, the output sentences are directly detokenized.
 Detokenization also applies to the combination method's output if the user selects more than one base model.
 
 The correction speed of GecWeb is fast.
-Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and T5-Large at 37 words per second.
+Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and GECToR-Bert at 37 words per second.
 Using ESC to combine base systems only adds a small amount of overhead.
-For example, using ESC to combine GECToR Roberta and T5-Large can correct text at a speed of 32 words
-per second, marginally slower than using T5-Large alone.
+For example, using ESC to combine GECToR Roberta and GECToR-Bert can correct text at a speed of 32 words per second, marginally slower than using GECToR-Bert alone.
 
 \subsection{User interface design}
 

@@ -353,7 +353,7 @@ Apply this architecture to GecWeb:
 2. Application Layer: The Flask RESTful API acts as the controller, handling user requests, managing the selection of GEC models, and coordinating the combination methods.
 3. Data Layer: Although no database is used in GecWeb, the GEC models and combination methods are considered part of the data layer in the context of the three-tier architecture.
    It handles the interaction with the underlying GEC systems and ensures that the corrected text is returned to the application layer.
-   The GEC models (T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer.
+   The GEC models (GECToR-Bert, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer.
 
 Although both the GEC models and the web interface can be hosted on the same server, separating them enhances modularity and scalability: the GEC models are hosted on a GPU-powered server, allowing the web interface to run on a CPU-focused server.
 
