@@ -139,11 +139,16 @@ As mentioned earlier in Chapter 3, GecWeb includes two state-of-the-art system c
 
 Users can choose to highlight the corrections by selecting the "Highlight corrections" box.
 If the user chooses to highlight the corrections, text spans in the output text that are different from the input text are highlighted in blue and a simple explanation of each correction can be displayed by clicking a highlighted text span.
-The appearance of highlighted corrections can be seen in Figure 2.
+The appearance of highlighted corrections can be seen in Figure~\ref{fig:highlight}.
 Displaying corrections with simple explanations can help language learners to understand their mistakes better.
 I extracted the corrections with their edit types using ERRANT.
 
-Figure 2: The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=\textwidth]{highlight}
+  \end{center}
+  \caption{The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.}\label{fig:highlight}
+\end{figure}
 
 \subsubsection{Input Text Box}
 
