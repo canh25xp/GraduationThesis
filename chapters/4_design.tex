@@ -1,52 +1,121 @@
 \chapter{Design, implementation, and evaluation}
 \label{chapter:design}
 
-In the previous chapter, we outlined the methodology used to develop this grammatical error correction system, covering the data processing pipeline, model selection strategies, and evaluation criteria.
-Building on that foundation, this chapter will delve deeper into the implementation details, demonstrating how each architectural component is realized in practice.
+This chapter delves deep into the design and implementation of GecWeb, detailing the system's architecture and user interface.
 
 \section{Architecture design}
 
-\subsection{Software architecture selection}
+To make GecWeb more modular, the three-tier architecture, also known as the Model-View-Controller (MVC) architecture, is chosen.
+Three-tier architecture is a well-established software application architecture that organizes applications into three logical and physical computing tiers: the presentation tier, or user interface; the application tier, where data is processed; and the data tier, where application data is stored and managed.
 
-To develop a lightweight, scalable, and efficient grammatical error correction (GEC) web application, this project adopts a modular, service-oriented architecture that ensures high performance and usability across different platforms.
-The architecture is designed to support real-time text processing, efficient model inference, and user-friendly interactions.
+The chief benefit of the three-tier architecture is that because each tier runs on its own infrastructure, each tier can be developed simultaneously by a separate development team.
+It can be updated or scaled as needed without impacting the other tiers.
 
-The system follows a client-server architecture with a microservices-inspired backend, ensuring modularity, scalability, and maintainability.
-This design separates the frontend, backend, and model inference service, allowing for flexible deployment and efficient load management.
+\begin{enumerate}
+  \item The presentation tier is the user interface and communication layer of the application, where the end user interacts with the application.
+        Its main purpose is to display information to and collect information from the user.
+        This top-level tier can run on a web browser, as a desktop application, or a graphical user interface (GUI), for example.
 
-\subsection{Overall design}
+  \item The application tier, also known as the logic tier or middle tier, is the heart of the application.
+        This tier is responsible for processing user input, making logical decisions, and interacting with the data tier.
+        It can also add, delete, or modify data in the data tier.
 
-The software components are selected based on performance, ease of development, and deployment flexibility:
+  \item The data tier is the storage layer of the application, where data is stored, retrieved, and managed.
+        This tier can consist of databases, file systems, or other data storage mechanisms.
+        The data tier is responsible for managing the application's data and ensuring data integrity and security.
+\end{enumerate}
 
-Frontend:
+In a three-tier application, all communication goes through the application tier.
+The presentation tier and the data tier cannot communicate directly with one another.
+Apply this architecture to GecWeb:
 
-\begin{itemize}
-  \item Developed using Bootstrap for a responsive and consistent user interface.
-  \item Communicates with the backend via RESTful APIs, allowing seamless integration.
-  \item Optimized for mobile compatibility to support users with varying device capabilities.
-\end{itemize}
+\begin{enumerate}
+  \item Presentation Layer: The web interface built using Flask and Bootstrap resides in this layer.
+  \item It is responsible for rendering the input text box, output text box, and correction highlights.
+  \item Application Layer: The Flask RESTful API acts as the controller, handling user requests, managing the selection of GEC models, and coordinating the combination methods.
+  \item Data Layer: Although no database is used in GecWeb, the GEC models and combination methods are considered part of the data layer in the context of the three-tier architecture.
+        It handles the interaction with the underlying GEC systems and ensures that the corrected text is returned to the application layer.
+        The GEC models (T5-Large, GECToR XLNet, GECToR Roberta) and combination methods (ESC, MEMT) reside in this layer.
+\end{enumerate}
 
-Backend:
-
-\begin{itemize}
-  \item Built using Flask, a lightweight and flexible Python web framework that enables fast API responses.
-  \item Manages user requests, handles text processing, and integrates with model inference services.
-  \item Implements asynchronous processing for efficient handling of multiple user requests.
-\end{itemize}
-
-Model Inference Service:
-
-\begin{itemize}
-  \item Runs three sequence tagging based GEC models using PyTorch for high speed grammatical corrections.
-  \item Implements system combination techniques (edit based and text based) to enhance correction accuracy.
-  \item Deployed on GPU powered servers for efficient model execution, with fallback options for CPU based inference in resource limited environments.
-\end{itemize}
-
-\subsection{Detailed package design}
+Although both the GEC models and the web interface can be hosted on the same server, separating them enhances modularity and scalability: the GEC models are hosted on a GPU-powered server, allowing the web interface to run on a CPU-focused server.
 
 \section{Detailed design}
 
+\subsection{System Design and Implementation}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{flowchart}
+  \end{center}
+  \caption{The process flow of GecWeb}\label{fig:flowchart}
+\end{figure}
+
+The process flow of GecWeb is described in Figure~\ref{fig:flowchart}.
+All inputs are first split by line and segmented into sentences.
+The line index for each sentence is recorded to retain the text structure in the output.
+Then, the web interface tokenizes the sentences and combines them into mini-batches to be sent to the base models' API.
+If the user chooses to highlight the corrections or combine multiple
+base models with ESC, the web interface will also use ERRANT to parse the input sentences.
+After receiving the output sentences from each base model, the interface will then parse the base models and outputs using ERRANT if the user chooses to highlight corrections or use ESC.
+If not, the outputs are sent to MEMT if the user chooses to combine the models with MEMT.
+Otherwise, the output sentences are directly detokenized.
+Detokenization also applies to the combination method's output if the user selects more than one base model.
+
+The correction speed of GecWeb is fast.
+Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and T5-Large at 37 words per second.
+Using ESC to combine base systems only adds a small amount of overhead.
+For example, using ESC to combine GECToR Roberta and T5-Large can correct text at a speed of 32 words
+per second, marginally slower than using T5-Large alone.
+
 \subsection{User interface design}
+
+The user interface of GecWeb is designed to be responsive and accessible across various screen resolutions, ensuring a seamless experience for users on different devices.
+The layout adapts to screens as small as 320x480 pixels, commonly found on mobile phones, up to 1920x1080 pixels, which is standard for desktop monitors.
+To maintain accessibility, the color scheme adheres to a contrast ratio above 4.5:1, ensuring readability for users with visual impairments.
+
+Consistency and standardization are key aspects of the interface design.
+Buttons maintain a uniform appearance with rounded corners and consistent padding, providing a visually appealing and user-friendly experience.
+The "Run" button, which triggers the grammatical error correction process, is prominently displayed in a contrasting color, making it easily identifiable.
+Feedback messages, including error notifications and success confirmations, appear at the top of the screen, ensuring they are immediately visible to users.
+
+The color scheme follows a clean and intuitive design, primarily using shades of blue and white.
+Corrections made to the text are highlighted in blue to enhance visibility, allowing users to easily identify the suggested changes.
+This structured approach to design improves usability, ensuring that the interface remains simple, effective, and accessible to a wide range of users.
+
+\section{Application Building}
+
+\subsection{Libraries and Tools}
+
+Table~\ref{tab:tools} provides a comprehensive list of all the tools and libraries that I have used in the development of GecWeb, along with their versions and URLs for more information.
+
+\begin{sidewaystable}[htbp]
+  \caption{Tools and libraries}\label{tab:tools}
+  \raggedleft
+  \begin{tabular}{|l|l|l|l|}
+    \hline
+    Name             & Purpose                                & Version     & URL                                              \\ \hline
+    WSL              & Linux environment                      & 2.3.26.0    & <https://learn.microsoft.com/en-us/windows/wsl/> \\ \hline
+    Neovim           & Text editor/IDE                        & 0.10.3      & <https://github.com/neovim/neovim>               \\ \hline
+    Conda            & Package, environment management system & 24.7.1      & <https://anaconda.org/anaconda/conda>            \\ \hline
+    Python           & Programming language                   & 3.10.16     & <https://github.com/python/cpython>              \\ \hline
+    Pyright          & Static Type Checker for Python         & 1.1.391     & <https://github.com/microsoft/pyright>           \\ \hline
+    Ruff             & Linter and formatter for Python        & 0.8.4       & <https://github.com/astral-sh/ruff>              \\ \hline
+    Pytest           & Unit test frameworks                   & 8.3.4       & <https://github.com/pytest-dev/pytest>           \\ \hline
+    Curl             & Test API endpoints                     & 8.11.1      & <https://github.com/curl/curl>                   \\ \hline
+    Windows Terminal & Terminal                               & 1.21.3231.0 & <https://github.com/microsoft/terminal>          \\ \hline
+    Tmux             & Terminal Multiplexer                   & 3.5a        & <https://github.com/tmux/tmux/wiki>              \\ \hline
+    Git              & Version control system                 & 2.45.2      & <https://git-scm.com/>                           \\ \hline
+    Docker           & Containerization and Virtualization    & 24.7.0      & <https://www.docker.com/>                        \\ \hline
+    Flask            & Web Framework                          & 3.1.0       & <https://flask.palletsprojects.com/>             \\ \hline
+    Bootstrap        & Front-End                              & 5.2.3       & <https://getbootstrap.com/>                      \\ \hline
+  \end{tabular}
+\end{sidewaystable}
+
+\subsection{Illustration of GecWeb}
+
+The interface of GecWeb consists of five components, which are (i) base model selection, (ii) combination method selection, (iii) output mode, (iv) input text box, and (v) output text box.
+The user interface of GecWeb is shown in Figure~\ref{fig:home}.
 
 \begin{figure}[htbp]
   \begin{center}
@@ -55,20 +124,94 @@ Model Inference Service:
   \caption{The User Interface of GecWeb.}\label{fig:home}
 \end{figure}
 
-Figure \ref{fig:home} shows the user interface of GecWeb, it is consist of five main components: the input text area, the output text area, the model selection, the combination method, and the output mode.
+\subsubsection{Base Model Selection}
 
-\subsection{Layer design}
+The user first needs to choose the base model(s).
+If the user chooses more than one base model, GecWeb will run a system combination method based on the combination method selected, as described in Chapter 3.
 
-\subsection{Database design}
+\subsubsection{Combination Method Selection}
 
-\section{Application Building}
+Next, the user needs to choose the combination method.
+If the user only chooses one base system, the selected combination method is ignored.
+As mentioned earlier in Chapter 3, GecWeb includes two state-of-the-art system combination methods, ESC and MEMT.
 
-\subsection{Libraries and Tools}
+\subsubsection{Output Mode}
 
-\subsection{Achievement}
+Users can choose to highlight the corrections by selecting the "Highlight corrections" box.
+If the user chooses to highlight the corrections, text spans in the output text that are different from the input text are highlighted in blue and a simple explanation of each correction can be displayed by clicking a highlighted text span.
+The appearance of highlighted corrections can be seen in Figure 2.
+Displaying corrections with simple explanations can help language learners to understand their mistakes better.
+I extracted the corrections with their edit types using ERRANT.
 
-\subsection{Illustration of main functions}
+Figure 2: The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.
+
+\subsubsection{Input Text Box}
+
+The user needs to put the text they want to correct in the input text box and clicks the run button.
+The corrected text will then be displayed in the output text box.
+Most recent GEC base systems expect the input to be a single sentence tokenized with SpaCy version 1.9, following the requirement from the BEA-2019 shared task.
+As such, an input text needs to be segmented into sentences and then tokenized with SpaCy before each sentence is given as the input to the GEC model.
+To retain the text structure, it is first split by line before segmented into sentences.
+This way, I can keep the information on which line a sentence should be printed.
+To segment a text into sentences, I follow the practice used in the NUCLE corpus by using the nltk Punkt
+tokenizer.
+
+\subsubsection{Output Text Box}
+
+After a text is entered into the input text box and the "Run" button is clicked, the corrected text will appear in the output text box.
+As the base GEC systems are expected to work on tokenized input and output, the output text needs to be detokenized to look more natural.
+Since SpaCy does not have a detokenizer and the document context of the original input may no longer be relevant after a sentence is corrected, I use Moses todetokenize a sentence.
+I found that Moses can detokenize a sentence that is tokenized by SpaCy reasonably well, only missing some cases like the detokenization of "is n't" and "are n;t" and removing spaces around hyphens.
+For these missed cases, I create simple rules to apply string replacement after Moses detokenization.
+Detokenization is not applied if the user chooses to highlight the corrections because the highlights need some room to make them clearly visible.
 
 \section{Testing}
 
+The back-end contains several test methods, with both automated and manual testing conducted to ensure the correctness and reliability of the system.
+The unit tests are implemented using pytest, a popular testing framework in Python.
+
+% These tests focus on verifying the behavior of individual components of the back-end, namely:
+%
+% \begin{enumerate}[label=(\roman*)]
+%   \item test\_bert\_embedder.py
+%   \item test\_gec\_model.py
+%   \item test\_gec\_predictor.py
+%   \item test\_roberta\_embedder.py
+%   \item test\_seq2labels.py
+%   \item test\_token\_indexer.py
+%   \item test\_tokenization.py
+% \end{enumerate}
+
+The Test Token Embedder for BERT Model ensures that the token embedding process for the BERT model functions correctly, validating that the input text is properly tokenized and converted into embeddings that the model can process.
+Similarly, the Test Token Embedder for RoBERTa Model performs the same validation for the RoBERTa model, ensuring compatibility with different transformer-based architectures.
+The Test Class for GecModel verifies the core functionality of the grammatical error correction model, including its ability to process input text and generate corrections.
+Additionally, the Test Class for Seq2Labels Model ensures that the sequence-to-labels model, which is used for sequence tagging tasks, operates as expected.
+
+In addition to unit tests, regression testing is performed to ensure that changes to the codebase do not introduce unintended side effects.
+The regression tests use the GECToR-Roberta model to generate predictions for all test files and verify that there are no changes in the output.
+This is particularly important for maintaining the consistency of the system, especially when updates or modifications are made to the models or the back-end logic.
+The regression tests help ensure that the system's performance remains stable over time and that any new changes do not degrade the quality of the corrections.
+
+To further streamline the testing process, both the unit tests and regression tests are automated using GitHub Actions in multiple Python environments (3.8, 3.9, and 3.10) to ensure compatibility across different versions.
+The tests are triggered automatically whenever code is pushed to the main branch, ensuring continuous integration and preventing faulty code from being merged.
+
+Finally, manual API testing is conducted using curl to interact with the back-end API directly, further confirming the proper functioning of the web service.
+
 \section{Deployment}
+
+The deployment of GecWeb is designed to ensure efficient access to grammatical error correction while leveraging the computing power of GPU-focused servers.
+The system consists of two main components: the Gec API, which handles the processing of text corrections, and the Gec Web interface, which provides users with an interactive front end to access the correction features.
+
+The Gec API is hosted on Hugging Face Inference Endpoints, which provide dedicated GPU resources to efficiently run deep learning models.
+Since grammatical error correction models, such as GECToR, require significant computational power for inference, deploying the API on GPU-accelerated infrastructure ensures fast response times and scalability.
+By hosting the API on Hugging Face Inference Endpoints, the system benefits from automatic scaling, secure deployment, and optimized performance without requiring extensive server management.
+
+The Gec Web interface is hosted separately on Hugging Face Spaces, a platform designed for hosting interactive web applications.
+Spaces allow developers to easily deploy front-end applications built with frameworks like Flask and Bootstrap, providing a simple way to share machine-learning models with the public.
+Hosting GecWeb on Spaces ensures that users can access the interface without requiring local installations, making the system widely accessible.
+The front-end communicates with the Gec API by sending text data for processing and receiving corrected outputs, ensuring a seamless and responsive user experience.
+
+By separating the back-end processing from the front-end interface, the deployment strategy optimizes performance and usability.
+The API benefits from high-performance GPUs, while the web interface remains lightweight and accessible through any modern browser.
+This cloud-based approach allows for easy updates, maintenance, and potential future expansions, making GecWeb an efficient and user-friendly platform for grammatical error correction.
+
