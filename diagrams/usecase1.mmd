@@ -1,0 +1,9 @@
+sequenceDiagram
+   participant U as User
+   participant F as Gec Web
+   participant B as Gec API
+   U->>F: Select base model
+   U->>F: Input sentences
+   F->>B: Process data
+   B-->>F: Send predictions
+   F-->>U: Display results

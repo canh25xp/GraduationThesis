@@ -1,0 +1,12 @@
+sequenceDiagram
+   participant U as User
+   participant F as Gec Web
+   participant B as Gec API
+   U->>F: Select multiple models
+   U->>F: Select system combination method(ESC/MEMT)
+   U->>F: Input sentences
+   F->>B: Process data using multiple models
+   B-->>F: Send predictions from all models
+   F->>F: Apply system combination
+   F->>F: Highlight corrections
+   F-->>U: Display results with highlights
