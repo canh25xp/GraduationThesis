@@ -411,7 +411,7 @@ If not, the outputs are sent to MEMT if the user chooses to combin the models wi
 Otherwise, the output sentences are directly detokenized.
 Detokenization also applies to the combination method's output if the user selects more than one base model.
 
-The correction speed of ALLECS is fast.
+The correction speed of GecWeb is fast.
 Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and T5-Large at 37 words per second.
 Using ESC to combine base systems only adds a small amount of overhead.
 For example, using ESC to combine GECToR Roberta and T5-Large can correct text at a speed of 32 words
@@ -477,8 +477,8 @@ Statistical Information:
 
 ### Illustration GecWeb
 
-The interface of ALLECS consists of five components, which are (i) base model selection, (ii) combination method selection, (iii) output mode, (iv) input text box, and (v) output text box.
-The user interface of ALLECS is shown in Figure 1.
+The interface of GecWeb consists of five components, which are (i) base model selection, (ii) combination method selection, (iii) output mode, (iv) input text box, and (v) output text box.
+The user interface of GecWeb is shown in Figure 1.
 
 Figure 1: The user interface of GecWeb
 
