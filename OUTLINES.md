@@ -366,8 +366,6 @@ This chapter delves deep into the design and implementation of GecWeb, detailing
 
 ## 4.1 Architecture design
 
-### 4.1.1 Software architecture selection
-
 <!--TODO: Rephrase this subsection-->
 
 To make GecWeb more modular, the three-tier architecture, also known as the Model-View-Controller (MVC) architecture, is chosen.
@@ -403,61 +401,28 @@ Apply this architecture to GecWeb:
 Improvements:
 Although both the GEC models and the web interface can be hosted on the same server, separating them enhances modularity and scalability: the GEC models are hosted on a GPU-powered server, allowing the web interface to run on a CPU-focused server.
 
-### 4.1.2 Overall design
-
-UML Package Diagram:
-
-```
-+-------------------+       +-------------------+       +-------------------+
-|   Presentation    |       |   Application     |       |      Data         |
-|     Layer         |       |     Layer         |       |      Layer        |
-|-------------------|       |-------------------|       |-------------------|
-| - Flask Web App   |       | - Flask RESTful   |       | - GEC Models      |
-| - Bootstrap UI    |       |   API             |       |   (T5-Large,      |
-|                   |       | - Model Selection |       |   GECToR XLNet,   |
-|                   |       | - Combination     |       |   GECToR Roberta) |
-|                   |       |   Methods         |       | - Combination     |
-|                   |       |                   |       |   Methods (ESC,   |
-|                   |       |                   |       |   MEMT)           |
-+-------------------+       +-------------------+       +-------------------+
-```
-
-Dependencies:
-
-- The Presentation Layer*depends on the Application Layer* to process user input and return corrected text.
-- The Application Layer*depends on the Data Layer* to access the GEC models and combination methods.
-
-Purpose of Each Package:
-
-- Presentation Layer: Handles user interaction and displays the corrected text.
-- Application Layer: Manages the logic for model selection, combination methods, and text processing.
-- Data Layer: Hosts the GEC models and combination methods, performing the actual text correction.
-
-### 4.1.3 Detailed package design
-
-Class Diagram for the Application Layer:
-
-```
-+-------------------+       +-------------------+       +-------------------+
-|   UserController  |       |   ModelSelector   |       |   TextProcessor   |
-|-------------------|       |-------------------|       |-------------------|
-| - handleInput()   |       | - selectModel()   |       | - processText()   |
-| - displayOutput() |       | - selectCombination() |   | - highlightCorrections() |
-+-------------------+       +-------------------+       +-------------------+
-```
-
-Relationships:
-
-- Dependency: `UserController` depends on `ModelSelector` and `TextProcessor` to handle user input and process text.
-- Association: `ModelSelector` and `TextProcessor` work together to select models and process text.
-
-Explanation:
-
-- UserController: Handles user input and coordinates the flow of data between the presentation layer and the application layer.
-- ModelSelector: Manages the selection of GEC models and combination methods.
-- TextProcessor: Processes the input text using the selected models and combination methods, and handles the highlighting of corrections.
-
 ## 4.2 Detailed design
+
+### 4.2.1 System Design and Implementation
+
+We describe the process flow of GecWeb in Figure 3.
+All inputs are first split by line and seg mented into sentences.
+The line index for each sentence is recorded to retain the text structure in the output.
+Then, the web interface tokenizes the sentences and combines them into mini-batches to be sent to the base models' API.
+If the user chooses to highlight the corrections or combine multiple
+base models with ESC, the web interface will also use ERRANT to parse the input sentences.
+After receiving the output sentences from each base model, the interface will then parse the base models; outputs using ERRANT if the user chooses to highlight corrections or use ESC.
+If not, the outputs are sent to MEMT if the user chooses to combin the models with MEMT.
+Otherwise, the output sentences are directly detokenized.
+Detokenization also applies to the combination method's output if the user selects more than one base model.
+
+The correction speed of ALLECS is fast.
+Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and T5-Large at 37 words per second.
+Using ESC to combine base systems only adds a small amount of overhead.
+For example, using ESC to combine GECToR Roberta and T5-Large can correct text at a speed of 32 words
+per second, marginally slower than using T5-Large alone.
+
+![Figure 3. The process flow of GecWeb](./diagrams/flowchart.png)
 
 ### 4.2.1 User interface design
 
@@ -476,8 +441,6 @@ Illustrative Images:
 
 - Figure 1: The main interface showing the input text box, "Run" button, and output text box.
 - Figure 2: The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.
-
-### 4.2.2 Layer design
 
 ## 4.3 Application Building
 
