@@ -479,38 +479,6 @@ Illustrative Images:
 
 ### 4.2.2 Layer design
 
-Detailed Class Design:
-
-1. UserController:
-
-   - Attributes: `inputText`, `outputText`, `selectedModels`, `selectedCombination`
-   - Methods: `handleInput()`, `displayOutput()`
-
-2. ModelSelector:
-
-   - Attributes: `availableModels`, `availableCombinations`
-   - Methods: `selectModel()`, `selectCombination()`
-
-3. TextProcessor:
-   - Attributes: `inputText`, `outputText`, `corrections`
-   - Methods: `processText()`, `highlightCorrections()`
-
-Sequence Diagram for Use Case: Input Text and View Corrections:
-
-```
-User -> UserController: Input Text
-UserController -> ModelSelector: Select Model
-ModelSelector -> TextProcessor: Process Text
-TextProcessor -> Data Layer: Correct Text
-Data Layer -> TextProcessor: Return Corrected Text
-TextProcessor -> UserController: Display Output
-UserController -> User: Show Corrected Text
-```
-
-### 4.2.3 Database design
-
-This application does not use any database
-
 ## 4.3 Application Building
 
 ### 4.3.1 Libraries and Tools
@@ -549,11 +517,53 @@ Statistical Information:
 - Number of Packages: 5
 - Source Code Size: ~10 MB
 
-### 4.3.3 Illustration of main functions
+### 4.3.3 Illustration GecWeb
 
-Figure 1: The main interface showing the input text box, "Run" button, and output text box.
+The interface of ALLECS consists of five components, which are (i) base model selection, (ii) combination method selection, (iii) output mode, (iv) input text box, and (v) output text box.
+The user interface of ALLECS is shown in Figure 1.
+
+Figure 1: The user interface of GecWeb
+
+#### Base Model Selection
+
+The user first needs to choose the base model(s).
+If the user chooses more than one base model, GecWeb will run a system combination method based on the combination method selected, as described in Chapter 3.
+
+#### Combination Method Selection
+
+Next, the user needs to choose the combination method.
+If the user only chooses one base system, the selected combination method is ignored.
+As mentioned earlier in Chapter 3, GecWeb includes two state-of-the-art system combination methods, ESC and MEMT.
+
+#### Output mode
+
+Users can choose to highlight the corrections by selecting the "Highlight corrections" box.
+If the user chooses to highlight the corrections, text spans in the output text that are different from the input text are highlighted in blue and a simple explanation of each correction can be displayed by clicking a highlighted text span.
+The appearance of highlighted corrections can be seen in Figure 2.
+Displaying corrections with simple explanations can help language learners to understand their mistakes better.
+We extracted the corrections with their edit types using ERRANT.
 
 Figure 2: The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.
+
+#### Input Text Box
+
+The user needs to put the text they want to correct in the input text box and clicks the run button.
+The corrected text will then be displayed in the output text box.
+Most recent GEC base systems expect the input to be a single sentence tokenized with SpaCy version 1.9, following the requirement from the BEA-2019 shared task.
+As such, an input text needs to be segmented into sentences and then tokenized with SpaCy before each sentence is given as the input to the GEC model.
+To retain the text structure, it is first split by line before segmented into sentences.
+This way, we can keep the information on which line a sentence should be printed.
+To segment a text into sentences, we follow the practice used in the NUCLE corpus by using the nltk Punkt
+tokenizer.
+
+#### Output Text Box
+
+After a text is entered into the input text box and the "Run" button is clicked, the corrected text will appear in the output text box.
+As the base GEC systems are expected to work on tokenized input and output, the output text needs to be detokenized to look more natural.
+Since SpaCy does not have a detokenizer and the document context of the original input may no longer be relevant after a sentence is corrected, we use Moses todetokenize a sentence.
+We found that Moses can detokenize a sentence that is tokenized by SpaCy reasonably well, only missing some cases like the detokenization of "is n't" and "are n;t" and removing spaces around hyphens.
+For these missed cases, we create simple rules to apply string replacement after Moses detokenization.
+Detokenization is not applied if the user chooses to highlight the corrections because the highlights need some room to make them clearly visible.
 
 ## 4.4 Testing
 
