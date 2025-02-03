@@ -55,9 +55,7 @@ Furthermore, the system will feature a responsive web interface that adapts to d
 
 The rest of this graduation thesis is organized as follows.
 
-<!--Chapter 2 presents a detailed survey of the current state of GEC systems, including an analysis of user needs and existing products.-->
-
-Chapter 2 focuses on presenting an overview of grammatical error correction tasks, analyzing common methods that have been developed in the world.
+Chapter 2 focuses on presenting a detailed survey of the current state of GEC systems, including an analysis of user needs and existing products.
 This chapter will also outline the functional and non-functional requirements for GecWeb, based on the identified limitations of current systems.
 
 Chapter 3 introduces the methodologies and technologies used in the development of GecWeb.
