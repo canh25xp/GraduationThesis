@@ -1,2 +1,137 @@
 \chapter{Methodology}
 \label{chapter:methodology}
+
+In this chapter, I introduce the technologies and platforms used in the development of GecWeb, including Python, Flask, and Bootstrap.
+Additionally, some basic theoretical foundations that underpin the system will also be summarized, including the sequence tagging models (GECToR) and system combination methods(ESC, MEMT).
+
+\section{Technologies and Platforms}
+\label{technologies-and-platforms}
+
+\subsection{Python Programming Language}
+\label{python-programming-language}
+
+Python was chosen as the primary programming language for GecWeb due to its flexibility and dominance in the field of Natural Language Processing (NLP).
+Python's simplicity, extensive libraries, and strong community support make it well-suited for rapid prototyping and integration with various NLP tools and models.
+While other languages like Java, C++, or JavaScript could have been used, Python's rich ecosystem, including libraries such as SpaCy, NLTK, TensorFlow, and PyTorch, provides essential tools for text processing and model deployment.
+Its popularity in NLP research and development also ensures future extensibility and ease of integration with emerging technologies.
+
+Source: Honnibal et al.~(2020) discuss the use of Python in industrial-strength NLP applications, highlighting its suitability for tasks like tokenization and text processing.
+
+\subsection{Flask Web Framework}
+\label{flask-web-framework}
+
+Flask was selected as the web framework for GecWeb due to its lightweight nature and ease of use in building RESTful APIs.
+Flask's minimalist design allows for rapid development while maintaining flexibility, making it an ideal choice for a project that requires clear separation between the frontend and back-end components.
+
+Django is another popular web framework for Python.
+While Django is a more feature-rich alternative, it includes functionalities that are unnecessary for GecWeb, which focuses on lightweight efficiency.
+Other frameworks, such as Node js or Ruby on Rails, were considered, but switching to a different programming language would have introduced additional complexity.
+Flask's straightforward integration with Python and its ability to handle HTTP requests efficiently made it the best fit for this project.
+
+\subsection{Bootstrap Framework}
+\label{bootstrap-framework}
+
+Bootstrap was used as the frontend framework to ensure a responsive and user-friendly interface.
+Bootstrap is a lightweight CSS and JavaScript framework that helps developers to design an interface with accessibility in mind, building a responsive layout and conforming with Web Content Accessibility Guideline (WCAG) 2.1.
+
+Since GecWeb needs to be accessible across different devices, including mobile phones, Bootstrap's responsive grid system and pre designed components provided a convenient solution.
+While alternative frameworks such as Foundation or Materialize could have been used, Bootstrap's extensive documentation and widespread adoption made it the most practical choice.
+Additionally, it adheres to Web Content Accessibility Guidelines (WCAG), ensuring that the user interface remains accessible to all users.
+
+\subsection{Gradio}
+\label{gradio}
+
+Gradio is another famous Python library that allows users to create web interfaces.
+Gradio's primary strength lies in its simplicity and ease of integration with machine learning models.
+Moreover, its seamless integration with Hugging Face Spaces enabled public access to the GEC models.
+
+It was used in the early development of GecWeb to create a prototype interface for testing the GEC models.
+With only less than 20 lines of code, I was able to create a functional web interface that could process text input and display the corrected output.
+
+However, Gradio is not optimized for production-scale applications due to its relatively higher resource usage, which make it oposed to the lightweight requirement of GecWeb.
+A demo version of GecWeb is still available at my Hugging Face Spaces page.
+
+\subsection{Github}
+\label{github}
+
+Github was used as the primary platform for managing the project's source code, automatic testing, and continuous integration.
+Using a simple github workflow, I was able to automate the unit test and regression test for the GeWeb back-end.
+More detailed information about the testing process will be provided in chapter 4.4.
+
+\subsection{Hugging Face}
+\label{hugging-face}
+
+Hugging Face is yet another platform for hosting git-based code repositories.
+It also hosts a large number of pre-trained models and datasets.
+And especially, it provides a simple way to host web applications through Spaces and Inference endpoints.
+More detailed information about the deployment process will be provided in chapter 4.5.
+
+\subsection{Docker}
+\label{docker}
+
+Docker was used to containerize the back-end and frontend of GecWeb, making the deployment process on Hugging Face Spaces easier and more efficient.
+
+Although GecWeb could (and did) run well without Docker, containerization provides several benefits, including portability, consistency, and scalability.
+By using Docker, the entire GecWeb application, including its Python dependencies, Flask API, and Bootstrap-based frontend, is packaged into an isolated environment where the back-end and frontend run independently while maintaining seamless communication.
+
+In particular, for Hugging Face Spaces, deploying a containerized application eliminates the need for manual dependency installation, making the process streamlined and reducing potential configuration errors.
+
+\section{Theoretical Foundations}
+\label{theoretical-foundations}
+
+In GecWeb, I provide three base systems and two system combination methods.
+The base systems I provide come from sequence tagging (GECToR).
+The combination methods I provide come from two approaches: edit-based (ESC) and text-based (MEMT) combination.
+The performance of the base systems and the combination methods on the BEA-2019 development set, CoNLL-2014 test set, and BEA-2019 test set is presented in Table 1.
+The scores of the base systems are presented in the top part of the table while the scores of the combination methods when combining the three base systems are presented in the bottom part.
+
+\subsection{GECToR}
+\label{gector}
+
+GecWeb relies on the GECToR sequence tagging model to perform grammatical errors by defining a set of token transformations.
+They defined two types of token transformations: basic transformations and g-transformations.
+The basic transformations include the keep, delete, and token-dependent append and replace transformations.
+The g-transformations are task-specific transformations such as merging two words, changing the verb form, changing the noun number, etc.
+
+GECToR was built by fine-tuning a large pre trained model in three rounds of training.
+In the first round, they trained the model on 9M sentence pairs of synthetic data.
+In the last two rounds, the model is further trained on the BEA-2019 training data.
+At inference time, GECToR runs iteratively for a number of rounds.
+This helps to increase both precision and recall of the corrections.
+Despite running the inference multiple times, GECToR's inference speed is up to 10 times faster compared to models using the sequence-to-sequence approach.
+
+GecWeb uses the RoBERTa, XLNet and Bert versions of GECToR, as the ensemble of these models produces the highest scores.
+
+\subsection{ESC}
+\label{esc}
+
+ESC is a system combination method that formulates the combination task as binary classification.
+ESC takes the union of all edits from the base systems and generates the features for each edit based on its edit type and inclusion in the base systems.
+ESC uses logistic regression to predict the probability that an edit is correct, and filters the edits based
+on a threshold and a greedy selection method.
+
+At the time of writing, ESC is the highest scoring GEC system on the CoNLL-2014 test set and the BEA-2019 test set.
+In GecWeb, for simplicity, I only provide the top three base systems since the performance of the
+ensemble of these three systems is still highly competitive with other state-of-the-art systems.
+I use ESC's original code but slightly modify it to take inputs stored in memory rather than reading them from files.
+I then train the ensemble model for all possible base system configurations.
+
+\subsection{MEMT}
+\label{memt}
+
+MEMT is a system combination method that combines the base models'outputs by first aligning
+them and generating all possible candidate sentences based on the token alignment.
+Candidate generation has some constraints, such as no repetition, weak monotonicity, and completeness.
+For each candidate sentence, MEMT generates the features based on the language model score, n-gram
+similarity to each base model's output, and the sentence length.
+
+MEMT then learns the weights to score the features and uses the trained weights to find the highest-scoring candidate sentence via beam search during inference.
+MEMT was originally designed for combining machine translation models, but Susanto et al.~(2014) have demonstrated that MEMT can effectively combine GEC models as well.
+In GecWeb, I use MEMT's original code6 and train the ensemble model for all possible base system configurations.
+
+\section{Summary}
+\label{summary}
+
+In this chapter, I have introduced the key technologies and theoretical foundations used in the development of GecWeb.
+Python, Flask, and Bootstrap were chosen for their flexibility, lightweight nature, and ability to support a responsive and accessible user interface.
+The GECToR models were selected for their state-of-the-art performance in GEC tasks, while ESC and MEMT were chosen as system combination methods to improve correction accuracy.
