@@ -80,8 +80,6 @@ From these analyses, I will underline the functional and non-functional requirem
 
 ### User/Customer Needs
 
-<!--TODO: Rephrase this subsection-->
-
 Grammatical Error Correction (GEC) is the task of automatically detecting and correcting errors in text.
 The task not only includes the correction of grammatical errors, such as missing prepositions and mismatched subject-verb agreement but also orthographic and semantic errors, such as misspellings and word choice errors.
 The term "Grammatical" Error Correction is thus something of a misnomer but is nevertheless now commonly understood to encompass errors that are not always strictly grammatical in nature.
@@ -121,87 +119,53 @@ These include (i) support for multiple state-of-the-art GEC models, (ii) integra
 
 ## Functional requirement
 
-GecWeb is designed to provide a user-friendly interface for grammatical error correction, supporting multiple GEC models and combination methods.
-The high-level functions of GecWeb include:
-
-1. Base Model Selection: Users can choose from multiple GEC base models, such as GECToR-Bert, GECToR XLNet, and GECToR Roberta.
-2. Combination Method Selection: Users can select system combination methods like ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
-3. Text Correction: Users can input text for correction, and the system will output the corrected text with optional highlighted corrections.
-4. Highlight Corrections: Users can choose to highlight corrections in the output text, with explanations for each correction.
-
-The use case diagram for GecWeb is shown below:
-
-```
-+-------------------+       +-----------------------+       +-------------------+
-|     User          |       |     GecWeb            |       |     GEC Models    |
-|-------------------|       |-----------------------|       |-------------------|
-| Select Base Model |       | Process Input         |       | Correct Text      |
-| Select Combination|       | Highlight Corrections |       | Combine Outputs   |
-| Input Text        |       | Output Corrected Text |       |                   |
-| View Corrections  |       |                       |       |                   |
-+-------------------+       +-----------------------+       +-------------------+
-```
-
-Actors:
-
-- User: The end-user who interacts with GecWeb to correct text.
-- GecWeb: The web application that processes user input and interacts with GEC models.
-- GEC Models: The underlying GEC systems that perform the actual text correction.
-
-Main Use Cases:
-
-1. Select Base Model: The user selects one or more GEC base models for text correction.
-2. Select Combination Method: The user selects a system combination method if multiple base models are chosen.
-3. Input Text: The user inputs the text to be corrected.
-4. View Corrections: The user views the corrected text with optional highlighted corrections.
+Figure x describes the main and the simplest use case of GecWeb, where only one model is used and no highlight is provided.
+And therefore no system combination is used.
 
 ```mermaid
 sequenceDiagram
    participant U as User
-   participant F as Web interface
+   participant F as Gec Web
    participant B as Gec API
+   U->>F: Select base model
    U->>F: Input sentences
    F->>B: Process data
    B-->>F: Send predictions
    F-->>U: Display results
 ```
 
-Use Case Name: Select Base Model
+In this use case, user first chooses one of the base models, then input or paste the sentences to be corrected.
+Gec Web then pre-process the data and then send it Gec API, where the data is being processes using the selected model.
+The corrected sentences is then sent back to Gec Web, where is is being post-process and displayed to the user.
 
-Event Flow:
+Figure X+1 describes a more advanced use case of GecWeb, where users select multiple models, and the system enables highlighting to indicate the changes made by the correction process.
+Since multiple models are used, system combination methods such as ESC or MEMT are applied to improve correction accuracy.
 
-1. The user opens the GecWeb web interface.
-2. The user selects one or more base models from the available options (T5-Large, GECToR XLNet, GECToR Roberta).
-3. The system confirms the selection and prepares to process the input text using the selected models.
+```mermaid
+sequenceDiagram
+   participant U as User
+   participant F as Gec Web
+   participant B as Gec API
+   U->>F: Select multiple models
+   U->>F: Select system combination method(ESC/MEMT)
+   U->>F: Input sentences
+   F->>B: Process data using multiple models
+   B-->>F: Send predictions from all models
+   F->>F: Apply system combination
+   F->>F: Highlight corrections
+   F-->>U: Display results with highlights
+```
 
-Preconditions:
+In this use case, the user first selects multiple grammatical error correction models (up to 3 models at once).
+Then the user selects a system combination method, or leave it default to use ESC.
+After inputting or pasting the text to be corrected, GecWeb pre-processes the data and sends it to the Gec API, which runs each selected model separately.
+The predictions from all models are then returned to GecWeb, where the selected combination system is applied to merge the outputs and produce a refined correction.
 
-- The GecWeb web interface is accessible.
-- The base models are available and loaded.
+Additionally, the highlight feature is enabled to visualize the modifications.
+Changes such as insertions, deletions, and replacements are marked in different colors to provide better clarity on how the text has been corrected.
+Finally, the post-processed and highlighted results are displayed to the user.
 
-Postconditions:
-
-- The selected base models are ready to process the input text.
-
-Use Case Name: Input Text and View Corrections
-
-Event Flow:
-
-1. The user inputs the text to be corrected in the input text box.
-2. The user clicks the "Run" button to initiate the correction process.
-3. The system processes the input text using the selected base models and combination methods.
-4. The system displays the corrected text in the output text box.
-5. If the user has selected the "Highlight corrections" option, the system highlights the corrections in blue and provides explanations for each correction.
-
-Preconditions:
-
-- The user has selected at least one base model.
-- The input text is provided in the input text box.
-
-Postconditions:
-
-- The corrected text is displayed in the output text box.
-- Corrections are highlighted if the "Highlight corrections" option is selected.
+This approach enhances correction accuracy by leveraging multiple models and improves user experience by making the corrections more transparent.
 
 ## Non-functional requirement
 
