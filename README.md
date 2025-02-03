@@ -12,7 +12,7 @@ Comply with the [SOICT's guidelines](https://soict.hust.edu.vn/trang-chu/templat
 latexmk -file-line-error -synctex=1 -interaction=nonstopmode  -xelatex -outdir=build main.tex
 ```
 
-## Convert markdown to pdf
+## Convert markdown to pdf and tex
 
 Download pandoc if you haven't
 
@@ -29,5 +29,9 @@ npm install --global mermaid-filter
 Then convert the markdown to pdf
 
 ```sh
-pandoc --filter mermaid-filter -o outlines.pdf ./OUTLINES.md
+pandoc --filter mermaid-filter -o outlines.pdf OUTLINES.md
+```
+
+```sh
+pandoc -f markdown -t latex --wrap=preserve --top-level-division=chapter -o outline.tex OUTLINES.md
 ```
