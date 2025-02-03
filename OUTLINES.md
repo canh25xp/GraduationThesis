@@ -12,24 +12,24 @@ GEC is a task that aims to automatically detect and correct errors that are pres
 Despite significant recent advancements in GEC technology, many state-of-the-art systems remain inaccessible to the general public due to their reliance on command-line interfaces and high-performance computing resources.
 This creates a barrier for non-technical users, particularly those in developing countries with limited access to advanced technology and slow internet connections. The need for a lightweight, user-friendly GEC system that can be easily accessed via mobile devices is therefore urgent.
 
-The development of such a system would not only benefit ESL and EFL learners but also native speakers who occasionally make mistakes. Additionally, improved GEC tools can enhance the quality of other natural language processing (NLP) tasks, such as machine translation and speech recognition, thereby contributing to broader advancements in the field of NLP.
+The development of such a system would benefit not only ESL and EFL learners but also native speakers who occasionally make mistakes. Additionally, improved GEC tools can enhance the quality of other natural language processing (NLP) tasks, such as machine translation and speech recognition, thereby contributing to broader advancements in the field of NLP.
 
 ## Objectives and scope of the graduation thesis
 
 Currently, there are several web services, such as those provided by Grammarly and John Snow Labs, offer ready-to-use English text correction.
 However, these services are not open-source, limiting their adaptability for deploying different GEC systems.
-Therefore, I will only compare and evaluate some available open-source English correction tools, noticeably, GECko+ and MiSS.
+Therefore, I will only compare and evaluate some available open-source English correction tools, noticeably GECko+ and MiSS.
 
-GECko+ is an English language assisting tool that corrects mistakes of various types on written texts.
+GECko+ is an English language assisting tool that corrects mistakes of various types in written texts.
 It combines a sentence level GEC model, GECToR XLNet, and a sentence ordering model.
 When a user inputs a text into the system, it segments the text into sentences and corrects the sentences with GECToR before re-ordering them by the sentence ordering model.
 However, GECko+ lacks the options of choosing the GEC base models and using
 system combination methods.
 It is also unclear how easy it is to extend GECko+ to other GEC systems.
 
-MiSS on the other hand is a comprehensive tool for machine translation that includes grammatical error correction as a feature.
-The main machine translation features of MiSS include: basic machine translation, simultaneous machine translation, and back translation for quality evaluation.
-For the GEC part, it uses GECToR XLNet for English GEC and GECToR with BERT-chinese and BERT-japanese models for Chinese and Japanese GEC respectively.
+MiSS, on the other hand, is a comprehensive tool for machine translation that includes grammatical error correction as a feature.
+The main machine translation features of MiSS include basic machine translation, simultaneous machine translation, and back translation for quality evaluation.
+For the GEC part, it uses GECToR XLNet for English GEC and GECToR with BERT-Chinese and BERT-Japanese models for Chinese and Japanese GEC, respectively.
 Like GECko+, MiSS also lacks the options of choosing the GEC base models and using system combination methods.
 
 Based on the above analysis, this thesis aims to develop GecWeb (Grammatical Error Correction Web), a web-based application designed to make state-of-the-art GEC systems more accessible to the general public.
@@ -40,9 +40,9 @@ This application is specifically designed to function efficiently across differe
 
 My proposed solution involves the development of a web application that leverage state-of-the-art GEC models (GECToR-Roberta, GECToR-XlNet and GECToR-Bert) and combination methods, namely ESC (Edit-based System Combination) and MEMT (Multi-Engine Machine Translation).
 
-The frontend of GecWeb is built using Flask and Bootstrap, providing a lightweight yet responsive web interface.
-Flask was chosen for its simplicity and seamless integration with the backend, while Bootstrap ensures a modern and mobile-friendly user experience.
-The backend is implemented using Flask-RESTful API, which efficiently handles client requests and provides structured API endpoints.
+The front end of GecWeb is built using Flask and Bootstrap, providing a lightweight yet responsive web interface.
+Flask was chosen for its simplicity and seamless integration with the back end, while Bootstrap ensures a modern and mobile-friendly user experience.
+The back-end is implemented using Flask-RESTful API, which efficiently handles client requests and provides structured API endpoints.
 Flask-RESTful was selected due to its minimal overhead, ease of use, and flexibility in designing scalable web services.
 The core grammatical error correction functionality is powered by GECToR, a transformer-based machine learning model.
 GECToR was chosen because of its state-of-the-art performance in handling complex grammatical errors while maintaining high accuracy and efficiency.
@@ -62,7 +62,7 @@ Chapter 3 introduces the methodologies and technologies used in the development 
 This chapter will provide an overview of the sequence tagging approaches, as well as the combination methods employed in the system.
 The chapter will also discuss the rationale behind the choice of technologies and their relevance to the requirements outlined in Chapter 2.
 
-Chapter 4 discuses in detailed the design, implementation, and evaluation of GecWeb.
+Chapter 4 discusses in detail the design, implementation, and evaluation of GecWeb.
 This chapter will cover the system's architecture, user interface design, and database design.
 It will also describe the tools and libraries used in the development process, as well as the testing and deployment of the application.
 
@@ -71,9 +71,9 @@ This chapter will highlight the system's modularity, lightweight design, and abi
 
 Finally, Chapter 6 concludes the thesis by summarizing the achievements of GecWeb and discussing potential future work. This chapter will also provide an analysis of the system's performance compared to existing GEC tools and suggest directions for further improvement.
 
-# Requirement survey and Analysis
+# Requirement survey and analysis
 
-In this chapter, I presents an overview of the current state of GEC systems.
+In this chapter, I present an overview of the current state of GEC systems.
 From these analyses, I will underline the functional and non-functional requirements for GecWeb, based on the identified limitations of current systems.
 
 ## Status survey
@@ -250,7 +250,7 @@ Source: Honnibal et al. (2020) discuss the use of Python in industrial-strength 
 ### Flask Web Framework
 
 Flask was selected as the web framework for GecWeb due to its lightweight nature and ease of use in building RESTful APIs.
-Flask's minimalist design allows for rapid development while maintaining flexibility, making it an ideal choice for a project that requires clear separation between the front-end and back-end components.
+Flask's minimalist design allows for rapid development while maintaining flexibility, making it an ideal choice for a project that requires clear separation between the frontend and back-end components.
 
 Django is another popular web framework for Python.
 While Django is a more feature-rich alternative, it includes functionalities that are unnecessary for GecWeb, which focuses on lightweight efficiency.
@@ -259,7 +259,7 @@ Flask's straightforward integration with Python and its ability to handle HTTP r
 
 ### Bootstrap Framework
 
-Bootstrap was used as the front-end framework to ensure a responsive and user-friendly interface.
+Bootstrap was used as the frontend framework to ensure a responsive and user-friendly interface.
 Bootstrap is a lightweight CSS and JavaScript framework that helps developers to design an interface with accessibility in mind, building a responsive layout and conforming with Web Content Accessibility Guideline (WCAG) 2.1.
 
 Since GecWeb needs to be accessible across different devices, including mobile phones, Bootstrap's responsive grid system and pre-designed components provided a convenient solution.
@@ -270,7 +270,7 @@ Additionally, it adheres to Web Content Accessibility Guidelines (WCAG), ensurin
 
 Gradio is another famous Python library that allows users to create web interfaces.
 Gradio's primary strength lies in its simplicity and ease of integration with machine learning models.
-Moreover, its seamless integration with Hugging Face Spaces enabled public access to the GEC models
+Moreover, its seamless integration with Hugging Face Spaces enabled public access to the GEC models.
 
 It was used in the early development of GecWeb to create a prototype interface for testing the GEC models.
 With only less than 20 lines of code, I was able to create a functional web interface that could process text input and display the corrected output.
@@ -281,22 +281,22 @@ A demo version of GecWeb is still available at my Hugging Face Spaces page.
 ### Github
 
 Github was used as the primary platform for managing the project's source code, automatic testing, and continuous integration.
-Using a simple github workflow, I was able to automate the unit test and regression test for the GeWeb backend.
+Using a simple github workflow, I was able to automate the unit test and regression test for the GeWeb back-end.
 More detailed information about the testing process will be provided in chapter 4.4.
 
 ### Hugging Face
 
 Hugging Face is yet another platform for hosting git-based code repositories.
-It is also hosing a large number of pre-trained models and datasets.
-And especially, it provides a simple way to hosting web applications through Spaces and Inference endpoints.
+It also hosts a large number of pre-trained models and datasets.
+And especially, it provides a simple way to host web applications through Spaces and Inference endpoints.
 More detailed information about the deployment process will be provided in chapter 4.5.
 
 ### Docker
 
-Docker was used to containerize the backend and frontend of GecWeb, making the deployment process on Hugging Face Spaces easier and more efficient.
+Docker was used to containerize the back-end and frontend of GecWeb, making the deployment process on Hugging Face Spaces easier and more efficient.
 
 Although GecWeb could (and did) run well without Docker, containerization provides several benefits, including portability, consistency, and scalability.
-By using Docker, the entire GecWeb application, including its Python dependencies, Flask API, and Bootstrap-based front-end, is packaged into an isolated environment where the backend and frontend run independently while maintaining seamless communication.
+By using Docker, the entire GecWeb application, including its Python dependencies, Flask API, and Bootstrap-based frontend, is packaged into an isolated environment where the back-end and frontend run independently while maintaining seamless communication.
 
 In particular, for Hugging Face Spaces, deploying a containerized application eliminates the need for manual dependency installation, making the process streamlined and reducing potential configuration errors.
 
@@ -304,13 +304,13 @@ In particular, for Hugging Face Spaces, deploying a containerized application el
 
 In GecWeb, I provide three base systems and two system combination methods.
 The base systems I provide come from sequence tagging (GECToR).
-The combination methods I provide come from two approaches, edit-based (ESC) and text-based (MEMT) combination.
+The combination methods I provide come from two approaches: edit-based (ESC) and text-based (MEMT) combination.
 The performance of the base systems and the combination methods on the BEA-2019 development set, CoNLL-2014 test set, and BEA-2019 test set is presented in Table 1.
 The scores of the base systems are presented in the top part of the table while the scores of the combination methods when combining the three base systems are presented in the bottom part.
 
 ### GECToR
 
-GecWeb relies on the GECToR sequence tagging model to perform grammatical error by defining a set of token transformations.
+GecWeb relies on the GECToR sequence tagging model to perform grammatical errors by defining a set of token transformations.
 They defined two types of token transformations: basic transformations and g-transformations.
 The basic transformations include the keep, delete, and token-dependent append and replace transformations.
 The g-transformations are task-specific transformations such as merging two words, changing the verb form, changing the noun number, etc.
@@ -347,7 +347,7 @@ similarity to each base model's output, and the sentence length.
 
 MEMT then learns the weights to score the features and uses the trained weights to find the highest-scoring candidate sentence via beam search during inference.
 MEMT was originally designed for combining machine translation models, but Susanto et al. (2014) have demonstrated that MEMT can effectively combine GEC models as well.
-In GecWeb, I use MEMT's original code6 and train the ensemble model for all possible base system configurations
+In GecWeb, I use MEMT's original code6 and train the ensemble model for all possible base system configurations.
 
 ## Summary
 
@@ -366,12 +366,12 @@ This chapter delves deep into the design and implementation of GecWeb, detailing
 To make GecWeb more modular, the three-tier architecture, also known as the Model-View-Controller (MVC) architecture, is chosen.
 Three-tier architecture is a well-established software application architecture that organizes applications into three logical and physical computing tiers: the presentation tier, or user interface; the application tier, where data is processed; and the data tier, where application data is stored and managed.
 
-The chief benefit of three-tier architecture is that because each tier runs on its own infrastructure, each tier can be developed simultaneously by a separate development team.
-And can be updated or scaled as needed without impacting the other tiers.
+The chief benefit of the three-tier architecture is that because each tier runs on its own infrastructure, each tier can be developed simultaneously by a separate development team.
+It can be updated or scaled as needed without impacting the other tiers.
 
 1. The presentation tier is the user interface and communication layer of the application, where the end user interacts with the application.
    Its main purpose is to display information to and collect information from the user.
-   This top-level tier can run on a web browser, as desktop application, or a graphical user interface (GUI), for example.
+   This top-level tier can run on a web browser, as a desktop application, or a graphical user interface (GUI), for example.
 
 2. The application tier, also known as the logic tier or middle tier, is the heart of the application.
    This tier is responsible for processing user input, making logical decisions, and interacting with the data tier.
@@ -401,13 +401,13 @@ Although both the GEC models and the web interface can be hosted on the same ser
 ### System Design and Implementation
 
 We describe the process flow of GecWeb in Figure 3.
-All inputs are first split by line and seg mented into sentences.
+All inputs are first split by line and segmented into sentences.
 The line index for each sentence is recorded to retain the text structure in the output.
 Then, the web interface tokenizes the sentences and combines them into mini-batches to be sent to the base models' API.
 If the user chooses to highlight the corrections or combine multiple
 base models with ESC, the web interface will also use ERRANT to parse the input sentences.
-After receiving the output sentences from each base model, the interface will then parse the base models; outputs using ERRANT if the user chooses to highlight corrections or use ESC.
-If not, the outputs are sent to MEMT if the user chooses to combin the models with MEMT.
+After receiving the output sentences from each base model, the interface will then parse the base models and outputs using ERRANT if the user chooses to highlight corrections or use ESC.
+If not, the outputs are sent to MEMT if the user chooses to combine the models with MEMT.
 Otherwise, the output sentences are directly detokenized.
 Detokenization also applies to the combination method's output if the user selects more than one base model.
 
@@ -434,7 +434,7 @@ Consistency and Standardization:
 
 Illustrative Images:
 
-- Figure 1: The main interface showing the input text box, "Run" button, and output text box.
+- Figure 1: The main interface shows the input text box, "Run" button, and output text box.
 - Figure 2: The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.
 
 ## Application Building
@@ -525,9 +525,9 @@ Detokenization is not applied if the user chooses to highlight the corrections b
 
 ## Testing
 
-The backend contains several test methods, with both automated and manual testing conducted to ensure the correctness and reliability of the system.
+The back-end contains several test methods, with both automated and manual testing conducted to ensure the correctness and reliability of the system.
 The unit tests are implemented using pytest, a popular testing framework in Python.
-These tests focus on verifying the behavior of individual components of the backend, namedly:
+These tests focus on verifying the behavior of individual components of the back-end, namely:
 (i)test_bert_embedder.py, (ii) test_gec_model.py, (iii)test_gec_predictor.py, (iv)test_roberta_embedder.py, (v)test_seq2labels.py, (vi)test_token_indexer.py, (v)test_tokenization.py
 The Test Token Embedder for BERT Model ensures that the token embedding process for the BERT model functions correctly, validating that the input text is properly tokenized and converted into embeddings that the model can process.
 Similarly, the Test Token Embedder for RoBERTa Model performs the same validation for the RoBERTa model, ensuring compatibility with different transformer-based architectures.
@@ -536,12 +536,12 @@ Additionally, the Test Class for Seq2Labels Model ensures that the sequence-to-l
 
 In addition to unit tests, regression testing is performed to ensure that changes to the codebase do not introduce unintended side effects.
 The regression tests use the GECToR-Roberta model to generate predictions for all test files and verify that there are no changes in the output.
-This is particularly important for maintaining the consistency of the system, especially when updates or modifications are made to the models or the backend logic. The regression tests help ensure that the system's performance remains stable over time and that any new changes do not degrade the quality of the corrections.
+This is particularly important for maintaining the consistency of the system, especially when updates or modifications are made to the models or the back-end logic. The regression tests help ensure that the system's performance remains stable over time and that any new changes do not degrade the quality of the corrections.
 
 To further streamline the testing process, both the unit tests and regression tests are automated using GitHub Actions in multiple Python environments (3.8, 3.9, and 3.10) to ensure compatibility across different versions.
 The tests are triggered automatically whenever code is pushed to the main branch, ensuring continuous integration and preventing faulty code from being merged.
 
-Finally, manual API testing is conducted using curl to interact with the backend API directly, further confirming the proper functioning of the web service.
+Finally, manual API testing is conducted using curl to interact with the back-end API directly, further confirming the proper functioning of the web service.
 
 Test Cases:
 
@@ -594,7 +594,7 @@ One of the primary challenges in developing GecWeb was to create a system that i
 
 To address this challenge, I designed GecWeb using a three-tier architecture (MVC) with a clear separation of concerns between the presentation, application, and data layers. The system was further modularized by hosting the GEC models on a separate GPU-powered server, while the web interface runs on a CPU-focused server. This separation ensures that the system remains lightweight and scalable.
 
-The use of Flask for the web interface and Bootstrap for the front-end allowed us to create a responsive and accessible user interface that works well on devices with varying screen sizes. The modular design also allows for easy integration of new GEC models and combination methods, as discussed in Section 4.1.
+The use of Flask for the web interface and Bootstrap for the frontend allowed us to create a responsive and accessible user interface that works well on devices with varying screen sizes. The modular design also allows for easy integration of new GEC models and combination methods, as discussed in Section 4.1.
 
 ### Results
 
@@ -626,7 +626,7 @@ A key requirement for GecWeb was to provide a user-friendly interface that is ac
 
 To address this challenge, I developed a responsive and accessible user interface using Bootstrap. The interface was designed to conform to Web Content Accessibility Guidelines (WCAG) 2.1, ensuring that it is usable by individuals with disabilities. The interface includes features such as highlighted corrections and simple explanations for each correction, making it easier for users to understand and learn from their mistakes.
 
-The interface was also designed to be lightweight, with a data transfer overhead of only 2.5 KB per run, ensuring that it can be used on slow internet connections. This was achieved by minimizing the use of heavy JavaScript libraries and optimizing the front-end code.
+The interface was also designed to be lightweight, with a data transfer overhead of only 2.5 KB per run, ensuring that it can be used on slow internet connections. This was achieved by minimizing the use of heavy JavaScript libraries and optimizing the frontend code.
 
 ### Results
 
@@ -674,7 +674,7 @@ In this chapter, I have presented the key contributions of GecWeb, including its
 
 In this thesis, I have presented GecWeb (A Lightweight Language Error Correction System), a web-based application designed to make state-of-the-art grammatical error correction (GEC) systems accessible to the general public. GecWeb addresses several key challenges in the field of GEC, including the need for a lightweight, modular, and user-friendly system that can be used on devices with varying screen sizes and internet speeds, particularly in developing countries.
 
-Although there was no significant breakthrough in the field of GEC, for the purpose of a graduate thesis, this project was an opportunity to learn and apply the knowledge gained during the time my university.
+Although there was no significant breakthrough in the field of GEC, for the purpose of a graduate thesis, this project was an opportunity to learn and apply the knowledge gained during my time at my university.
 
 ### Comparison with Existing Systems
 
