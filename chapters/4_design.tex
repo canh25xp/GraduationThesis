@@ -62,11 +62,6 @@ If not, the outputs are sent to MEMT if the user chooses to combine the models w
 Otherwise, the output sentences are directly detokenized.
 Detokenization also applies to the combination method's output if the user selects more than one base model.
 
-The correction speed of GecWeb is fast.
-Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and GECToR-Bert at 37 words per second.
-Using ESC to combine base systems only adds a small amount of overhead.
-For example, using ESC to combine GECToR Roberta and GECToR-Bert can correct text at a speed of 32 words per second, marginally slower than using GECToR-Bert alone.
-
 \subsection{User interface design}
 
 The user interface of GecWeb is designed to be responsive and accessible across various screen resolutions, ensuring a seamless experience for users on different devices.
@@ -230,20 +225,19 @@ Detokenization is not applied if the user chooses to highlight the corrections b
 
 \section{Testing}
 
+\subsection{Back-end Testing}
+
 The back-end contains several test methods, with both automated and manual testing conducted to ensure the correctness and reliability of the system.
 The unit tests are implemented using pytest, a popular testing framework in Python.
 
-% These tests focus on verifying the behavior of individual components of the back-end, namely:
-%
-% \begin{enumerate}[label=(\roman*)]
-%   \item test\_bert\_embedder.py
-%   \item test\_gec\_model.py
-%   \item test\_gec\_predictor.py
-%   \item test\_roberta\_embedder.py
-%   \item test\_seq2labels.py
-%   \item test\_token\_indexer.py
-%   \item test\_tokenization.py
-% \end{enumerate}
+These tests focus on verifying the behavior of individual components of the back-end, namely:
+(i) test bert embedder,
+(ii) test gec model,
+(iii) test gec predictor,
+(iv) test roberta embedder,
+(v) test seq2labels,
+(vi) test token indexer,
+(vii) test tokenization.
 
 The Test Token Embedder for BERT Model ensures that the token embedding process for the BERT model functions correctly, validating that the input text is properly tokenized and converted into embeddings that the model can process.
 Similarly, the Test Token Embedder for RoBERTa Model performs the same validation for the RoBERTa model, ensuring compatibility with different transformer-based architectures.
@@ -277,4 +271,9 @@ The front-end communicates with the Gec API by sending text data for processing 
 By separating the back-end processing from the front-end interface, the deployment strategy optimizes performance and usability.
 The API benefits from high-performance GPUs, while the web interface remains lightweight and accessible through any modern browser.
 This cloud-based approach allows for easy updates, maintenance, and potential future expansions, making GecWeb an efficient and user-friendly platform for grammatical error correction.
+
+The correction speed of GecWeb is fast.
+Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and GECToR-Bert at 37 words per second.
+Using ESC to combine base systems only adds a small amount of overhead.
+For example, using ESC to combine GECToR Roberta and GECToR-Bert can correct text at a speed of 32 words per second, marginally slower than using GECToR-Bert alone.
 
