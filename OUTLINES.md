@@ -375,10 +375,10 @@ Otherwise, the output sentences are directly detokenized.
 Detokenization also applies to the combination method's output if the user selects more than one base model.
 
 The correction speed of GecWeb is fast.
-Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and T5-Large at 37 words per second.
+Running on an NVIDIA Titan X GPU server with 12GB memory, GECToR Roberta can correct text at a speed of 723 words per second, GECToR XLNet at 640 words per second, and GECToR-Bert at 37 words per second.
 Using ESC to combine base systems only adds a small amount of overhead.
-For example, using ESC to combine GECToR Roberta and T5-Large can correct text at a speed of 32 words
-per second, marginally slower than using T5-Large alone.
+For example, using ESC to combine GECToR Roberta and GECToR-Bert can correct text at a speed of 32 words
+per second, marginally slower than using GECToR-Bert alone.
 
 ### User interface design
 
