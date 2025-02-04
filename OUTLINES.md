@@ -119,7 +119,7 @@ These include (i) support for multiple state-of-the-art GEC models, (ii) integra
 
 ## Functional requirement
 
-Figure x describes the main and the simplest use case of GecWeb, where only one model is used and no highlight is provided.
+Figure below describes the main and the simplest use case of GecWeb, where only one model is used and no highlight is provided.
 And therefore no system combination is used.
 
 ```mermaid
@@ -361,9 +361,9 @@ Although both the GEC models and the web interface can be hosted on the same ser
 
 ### System Design and Implementation
 
-![Figure 3. The process flow of GecWeb](./diagrams/flowchart.png)
+![Figure 1. The process flow of GecWeb](./diagrams/flowchart.png)
 
-The process flow of GecWeb is described in Figure 3.
+The process flow of GecWeb is described in Figure above.
 All inputs are first split by line and segmented into sentences.
 The line index for each sentence is recorded to retain the text structure in the output.
 Then, the web interface tokenizes the sentences and combines them into mini-batches to be sent to the base models' API.
@@ -418,12 +418,12 @@ Table x.y.z provides a comprehensive list of all the tools and libraries that I 
 | Flask            | Web Framework                                    | 3.1.0       | <https://flask.palletsprojects.com/>             |
 | Bootstrap        | Front-End                                        | 5.2.3       | <https://getbootstrap.com/>                      |
 
-### Illustration GecWeb
+### GecWeb final product
 
 The interface of GecWeb consists of five components, which are (i) base model selection, (ii) combination method selection, (iii) output mode, (iv) input text box, and (v) output text box.
-The user interface of GecWeb is shown in Figure 1.
+The user interface of GecWeb is shown in Figure below.
 
-Figure 1: The user interface of GecWeb
+![The user interface of GecWeb](./figures/home.jpeg)
 
 #### Base Model Selection
 
@@ -440,11 +440,11 @@ As mentioned earlier in Chapter 3, GecWeb includes two state-of-the-art system c
 
 Users can choose to highlight the corrections by selecting the "Highlight corrections" box.
 If the user chooses to highlight the corrections, text spans in the output text that are different from the input text are highlighted in blue and a simple explanation of each correction can be displayed by clicking a highlighted text span.
-The appearance of highlighted corrections can be seen in Figure 2.
+The appearance of highlighted corrections can be seen in Figure below.
 Displaying corrections with simple explanations can help language learners to understand their mistakes better.
 I extracted the corrections with their edit types using ERRANT.
 
-Figure 2: The interface with highlighted corrections, showing blue highlights for corrected text and explanations for each correction.
+![The user interface of GecWeb](./figures/highlight.jpeg)
 
 #### Input Text Box
 
