@@ -51,6 +51,32 @@ With only less than 20 lines of code, I was able to create a functional web inte
 However, Gradio is not optimized for production-scale applications due to its relatively higher resource usage, which make it oposed to the lightweight requirement of GecWeb.
 A demo version of GecWeb is still available at my Hugging Face Spaces page.
 
+\subsection{ERRANT}
+
+ERRANT (ERRor ANnotation Toolkit) is a tool designed for automatic annotation of grammatical errors in text.
+It is used to extract corrections along with their corresponding error types.
+This information allows users to receive not only the corrected text but also insights into the nature of their mistakes.
+When the "Highlight corrections" option is selected, ERRANT helps classify the edits, enabling users to click on highlighted spans for explanations.
+By providing structured feedback, ERRANT enhances the educational value of the system, making it particularly useful for language learners.
+
+\subsection{NLTK}
+
+NLTK (Natural Language Toolkit) is a comprehensive Python library for NLP tasks, including tokenization, sentence segmentation, stemming, and parsing.
+It provides various pre-trained models and tools to facilitate linguistic analysis.
+GecWeb relies on NLTK's Punkt tokenizer for sentence segmentation.
+Since most modern grammatical error correction (GEC) models operate at the sentence level, input text needs to be split into individual sentences before processing.
+The Punkt tokenizer, trained on English text, is used to segment user input while preserving line breaks, ensuring that the corrected text maintains the original document structure.
+This method follows the approach used in the NUCLE corpus, a widely used dataset in GEC research.
+
+\subsection{SpaCy}
+
+SpaCy is a high-performance NLP library optimized for production applications.
+It offers efficient tokenization, named entity recognition, dependency parsing, and more.
+SpaCy is primarily used for tokenization in GecWeb.
+Since many GEC models, including those used in the BEA-2019 shared task, expect tokenized input, GecWeb applies SpaCy's tokenizer to preprocess the text before passing it to the model.
+Additionally, SpaCy lacks a built-in detokenizer, so GecWeb uses Moses detokenization after correction.
+However, minor post-processing rules are applied to handle cases where SpaCy and Moses produce inconsistencies (e.g., spacing around contractions or hyphens).
+
 \subsection{Github}
 \label{github}
 
