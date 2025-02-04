@@ -387,8 +387,8 @@ Buttons maintain a uniform appearance with rounded corners and consistent paddin
 The "Run" button, which triggers the grammatical error correction process, is prominently displayed in a contrasting color, making it easily identifiable.
 Feedback messages, including error notifications and success confirmations, appear at the top of the screen, ensuring they are immediately visible to users.
 
-The color scheme follows a clean and intuitive design, primarily using shades of blue and white.
-Corrections made to the text are highlighted in blue to enhance visibility, allowing users to easily identify the suggested changes.
+The color scheme follows a clean and intuitive design, primarily using shades of green and white.
+Corrections made to the text are highlighted in green to enhance visibility, allowing users to easily identify the suggested changes.
 This structured approach to design improves usability, ensuring that the interface remains simple, effective, and accessible to a wide range of users.
 
 ## Application Building
@@ -453,7 +453,7 @@ As mentioned earlier in Chapter 3, GecWeb includes two state-of-the-art system c
 #### Output mode
 
 Users can choose to highlight the corrections by selecting the "Highlight corrections" box.
-If the user chooses to highlight the corrections, text spans in the output text that are different from the input text are highlighted in blue and a simple explanation of each correction can be displayed by clicking a highlighted text span.
+If the user chooses to highlight the corrections, text spans in the output text that are different from the input text are highlighted in green and a simple explanation of each correction can be displayed by clicking a highlighted text span.
 The appearance of highlighted corrections can be seen in Figure below.
 Displaying corrections with simple explanations can help language learners to understand their mistakes better.
 I extracted the corrections with their edit types using ERRANT.
