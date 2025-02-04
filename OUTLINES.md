@@ -421,6 +421,12 @@ The user interface of GecWeb is shown in Figure below.
 
 ![The user interface of GecWeb](./figures/home.jpeg)
 
+The design of GecWeb is inspired a lot by Google Translate, since both application performs text to text transformations.
+
+![The user interface of Google Translate, which inspired GecWeb](./figures/googletranslate.jpeg)
+
+As you can see in Figure a and b, GecWeb resembled some similarity with Google Translate, that is, app name at the top, input box on the left, output box on the right.
+
 #### Base Model Selection
 
 The user first needs to choose the base model(s).
