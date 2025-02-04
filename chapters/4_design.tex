@@ -111,6 +111,25 @@ Table~\ref{tab:tools} provides a comprehensive list of all the tools and librari
   \end{tabular}
 \end{sidewaystable}
 
+\subsection{First prototype}
+
+As mentioned in Chapter 2, Gradio was used to build the first protype of GecWeb.
+The user interface of this prototype is shown in Figure~\ref{fig:prototype}.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=\textwidth]{prototype}
+  \end{center}
+  \caption{First prototype of GecWeb}\label{fig:prototype}
+\end{figure}
+
+In this prototype, the system combination method is not yet implemented.
+Additionally, both the models and the interface is run in the same machine.
+Although it lack some functionality that I specified in Chapter 2, it provides a quick demo of GecWeb.
+You can still access this version on \href{https://huggingface.co/spaces/canh25xp/gector_demo}{My Hugging Face page}
+To reduce resources used, the app auto put it self to sleep after 24 hours of inactivity.
+So you might have to wait for 10-20s for the app to boot up.
+
 \subsection{Illustration of GecWeb}
 
 The interface of GecWeb consists of five components, which are (i) base model selection, (ii) combination method selection, (iii) output mode, (iv) input text box, and (v) output text box.
