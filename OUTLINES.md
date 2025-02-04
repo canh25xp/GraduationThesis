@@ -138,7 +138,7 @@ In this use case, user first chooses one of the base models, then input or paste
 Gec Web then pre-process the data and then send it Gec API, where the data is being processes using the selected model.
 The corrected sentences is then sent back to Gec Web, where is is being post-process and displayed to the user.
 
-Figure X+1 describes a more advanced use case of GecWeb, where users select multiple models, and the system enables highlighting to indicate the changes made by the correction process.
+Figure below describes a more advanced use case of GecWeb, where users select multiple models, and the system enables highlighting to indicate the changes made by the correction process.
 Since multiple models are used, system combination methods such as ESC or MEMT are applied to improve correction accuracy.
 
 ```mermaid
@@ -414,7 +414,19 @@ Table x.y.z provides a comprehensive list of all the tools and libraries that I 
 | Flask            | Web Framework                                    | 3.1.0       | <https://flask.palletsprojects.com/>             |
 | Bootstrap        | Front-End                                        | 5.2.3       | <https://getbootstrap.com/>                      |
 
-### GecWeb final product
+### First prototype
+
+As mentioned in Chapter 2, Gradio was used to build the first protype of GecWeb.
+The user interface of this prototype is shown in Figure below.
+
+![First prototype of GecWeb](./figures/prototype.jpeg)
+
+In this prototype, the system combination method is not yet implemented.
+Additionally, both the models and the interface is run in the same machine.
+Although it lack some functionality that I specified in Chapter 2, it provides a quick demo of GecWeb.
+You can still access this version on [My Hugging Face page](https://huggingface.co/canh25xp/gector_demo)
+
+### Illustration of GecWeb
 
 The interface of GecWeb consists of five components, which are (i) base model selection, (ii) combination method selection, (iii) output mode, (iv) input text box, and (v) output text box.
 The user interface of GecWeb is shown in Figure below.
