@@ -93,25 +93,62 @@ Table~\ref{tab:tools} provides a comprehensive list of all the tools and librari
   \raggedleft
   \begin{tabular}{|l|l|l|l|}
     \hline
-    Name             & Purpose                                & Version     & URL                                             \\ \hline
-    WSL              & Linux environment                      & 2.3.26.0    & <https://learn.microsoft.com/en-us/windows/wsl> \\ \hline
-    Neovim           & Text editor/IDE                        & 0.10.3      & <https://github.com/neovim/neovim>              \\ \hline
-    Conda            & Package, environment management system & 24.7.1      & <https://anaconda.org/anaconda/conda>           \\ \hline
-    Python           & Programming language                   & 3.10.16     & <https://github.com/python/cpython>             \\ \hline
-    Pyright          & Static Type Checker for Python         & 1.1.391     & <https://github.com/microsoft/pyright>          \\ \hline
-    Ruff             & Linter and formatter for Python        & 0.8.4       & <https://github.com/astral-sh/ruff>             \\ \hline
-    Pytest           & Unit test frameworks                   & 8.3.4       & <https://github.com/pytest-dev/pytest>          \\ \hline
-    Curl             & Test API endpoints                     & 8.11.1      & <https://github.com/curl/curl>                  \\ \hline
-    Windows Terminal & Terminal                               & 1.21.3231.0 & <https://github.com/microsoft/terminal>         \\ \hline
-    Tmux             & Terminal Multiplexer                   & 3.5a        & <https://github.com/tmux/tmux>                  \\ \hline
-    Git              & Version control system                 & 2.45.2      & <https://git-scm.com>                           \\ \hline
-    Docker           & Containerization and Virtualization    & 24.7.0      & <https://www.docker.com>                        \\ \hline
-    Flask            & Web Framework                          & 3.1.0       & <https://flask.palletsprojects.com>             \\ \hline
-    Bootstrap        & Front-End                              & 5.2.3       & <https://getbootstrap.com>                      \\ \hline
-    Gradio           & Front-End                              & 3.20.1      & <https://github.com/gradio-app/gradio>          \\ \hline
-    Errant           & Extract/classify grammatical errors    & 2.3.3       & <https://github.com/chrisjbryant/errant>        \\ \hline
+    Name             & Purpose                                & Version     & URL                                                 \\ \hline
+    WSL              & Linux environment                      & 2.3.26.0    & \url{https://learn.microsoft.com/en-us/windows/wsl} \\ \hline
+    Neovim           & Text editor/IDE                        & 0.10.3      & \url{https://github.com/neovim/neovim}              \\ \hline
+    Conda            & Package, environment management system & 24.7.1      & \url{https://anaconda.org/anaconda/conda}           \\ \hline
+    Python           & Programming language                   & 3.10.16     & \url{https://github.com/python/cpython}             \\ \hline
+    Pyright          & Static Type Checker for Python         & 1.1.391     & \url{https://github.com/microsoft/pyright}          \\ \hline
+    Ruff             & Linter and formatter for Python        & 0.8.4       & \url{https://github.com/astral-sh/ruff}             \\ \hline
+    Pytest           & Unit test frameworks                   & 8.3.4       & \url{https://github.com/pytest-dev/pytest}          \\ \hline
+    Curl             & Test API endpoints                     & 8.11.1      & \url{https://github.com/curl/curl}                  \\ \hline
+    Windows Terminal & Terminal                               & 1.21.3231.0 & \url{https://github.com/microsoft/terminal}         \\ \hline
+    Tmux             & Terminal Multiplexer                   & 3.5a        & \url{https://github.com/tmux/tmux}                  \\ \hline
+    Git              & Version control system                 & 2.45.2      & \url{https://git-scm.com}                           \\ \hline
+    Docker           & Containerization and Virtualization    & 24.7.0      & \url{https://www.docker.com}                        \\ \hline
+    Flask            & Web Framework                          & 3.1.0       & \url{https://flask.palletsprojects.com}             \\ \hline
+    Bootstrap        & Front-End                              & 5.2.3       & \url{https://getbootstrap.com}                      \\ \hline
+    Gradio           & Front-End                              & 3.20.1      & \url{https://github.com/gradio-app/gradio}          \\ \hline
+    ERRANT           & Extract/classify grammatical errors    & 2.3.3       & \url{https://github.com/chrisjbryant/errant}        \\ \hline
+    NLTK             & Pre/Post processing data               & 3.9.1       & \url{https://github.com/nltk/nltk}                  \\ \hline
+    SpaCy            & Natural Language Processing            & 2.3.9       & \url{https://github.com/explosion/spaCy}            \\ \hline
   \end{tabular}
 \end{sidewaystable}
+
+WSL (Windows Subsystem for Linux) was used to provide a Linux-like development environment on Windows.
+Since many machine learning tools and deployment workflows are optimized for Linux, WSL allows for a smooth experience without needing a separate Linux machine or virtual machine.
+
+Neovim was selected as the primary code editor due to its speed, extensibility, and lightweight nature.
+With proper configurations, Neovim offers an efficient development experience, particularly when working within a terminal-based environment like WSL.
+
+Conda was used for managing Python environments and dependencies.
+Given that machine learning projects often require specific versions of libraries to maintain compatibility, Conda provided a structured way to manage these dependencies without interfering with system-wide Python installations.
+This ensured a reproducible environment across different machines, and different projects.
+
+Pyright was used as a static type checker to ensure type safety in Python code.
+Since Python is dynamically typed, it can sometimes lead to runtime errors that are hard to catch during development.
+Pyright helped enforce type annotations, making the code more maintainable and reducing the likelihood of bugs.
+
+Ruff was employed as a linter and code formatter to maintain coding standards and improve code quality.
+It offers fast performance and supports multiple linting rules, ensuring consistency across the codebase.
+Using Ruff also helped in catching potential issues early in development.
+
+Windows Terminal provided a modern and customizable terminal experience on Windows.
+With support for multiple profiles and tabs, it allowed for a smooth workflow when working with WSL, Git, and various command-line tools simultaneously.
+
+Tmux was used as a terminal multiplexer, enabling multiple terminal sessions within a single window.
+This was particularly useful when running long-running processes such as model training, debugging, and managing multiple environments simultaneously.
+It ensured that sessions remained active even when disconnected from a remote server.
+
+Git was an essential tool for version control and collaboration.
+It enabled efficient tracking of changes, managing branches, and synchronizing work across different devices.
+With Git, the project remained organized, and it was easier to roll back changes if needed.
+
+Docker was used for containerization and deployment.
+Since machine learning applications often have complex dependencies, Docker ensured that GecWeb could be packaged and deployed in a consistent and reproducible environment.
+This was especially useful when deploying the application to cloud servers or sharing the setup with other developers.
+
+Python, Flask, Bootstrap, Gradio, ERRANT, NLTK and SpaCy were already discussed in Chapter~\ref{chapter:methodology}, therefore I will not discuss them here.
 
 \subsection{First prototype}
 
