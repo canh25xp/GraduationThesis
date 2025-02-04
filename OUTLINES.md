@@ -292,22 +292,18 @@ GecWeb uses the RoBERTa, XLNet and Bert versions of GECToR, as the ensemble of t
 
 ESC is a system combination method that formulates the combination task as binary classification.
 ESC takes the union of all edits from the base systems and generates the features for each edit based on its edit type and inclusion in the base systems.
-ESC uses logistic regression to predict the probability that an edit is correct, and filters the edits based
-on a threshold and a greedy selection method.
+ESC uses logistic regression to predict the probability that an edit is correct, and filters the edits based on a threshold and a greedy selection method.
 
 At the time of writing, ESC is the highest scoring GEC system on the CoNLL-2014 test set and the BEA-2019 test set.
-In GecWeb, for simplicity, I only provide the top three base systems since the performance of the
-ensemble of these three systems is still highly competitive with other state-of-the-art systems.
+In GecWeb, for simplicity, I only provide the top three base systems since the performance of the ensemble of these three systems is still highly competitive with other state-of-the-art systems.
 I use ESC's original code but slightly modify it to take inputs stored in memory rather than reading them from files.
 I then train the ensemble model for all possible base system configurations.
 
 ### MEMT
 
-MEMT is a system combination method that combines the base models'outputs by first aligning
-them and generating all possible candidate sentences based on the token alignment.
+MEMT is a system combination method that combines the base models'outputs by first aligning them and generating all possible candidate sentences based on the token alignment.
 Candidate generation has some constraints, such as no repetition, weak monotonicity, and completeness.
-For each candidate sentence, MEMT generates the features based on the language model score, n-gram
-similarity to each base model's output, and the sentence length.
+For each candidate sentence, MEMT generates the features based on the language model score, n-gram similarity to each base model's output, and the sentence length.
 
 MEMT then learns the weights to score the features and uses the trained weights to find the highest-scoring candidate sentence via beam search during inference.
 MEMT was originally designed for combining machine translation models, but Susanto et al. (2014) have demonstrated that MEMT can effectively combine GEC models as well.
