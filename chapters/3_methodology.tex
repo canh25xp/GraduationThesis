@@ -112,8 +112,11 @@ In particular, for Hugging Face Spaces, deploying a containerized application el
 \subsection{GECToR}
 \label{gector}
 
-GecWeb relies on the GECToR sequence tagging model to perform grammatical errors by defining a set of token transformations.
-They defined two types of token transformations: basic transformations and g-transformations.
+GECToR is a "tag, not rewrite" approach to grammatical error correction.
+It contains a transformer-based encoder stacked with two output linear layers that are responsible for error detection and error correction \citep{omelianchuk-etal-2020-gector}.
+
+GecWeb relies on the GECToR sequence tagging model to perform grammatical errors by defining a set of token transformations
+It defined two types of token transformations: basic transformations and g-transformations.
 The basic transformations include the keep, delete, and token-dependent append and replace transformations.
 The g-transformations are task-specific transformations such as merging two words, changing the verb form, changing the noun number, etc.
 
