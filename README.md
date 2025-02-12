@@ -9,7 +9,7 @@ Comply with the [SOICT's guidelines](https://soict.hust.edu.vn/trang-chu/templat
 ## How to Compile
 
 ```sh
-latexmk -file-line-error -synctex=1 -interaction=nonstopmode  -xelatex -outdir=build main.tex
+latexmk -file-line-error -synctex=1 -interaction=nonstopmode  -xelatex -outdir=build report.tex
 ```
 
 ## Convert markdown to pdf and tex
