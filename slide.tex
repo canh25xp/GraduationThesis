@@ -9,29 +9,8 @@
 \newtheorem{thm}{Theory}
 \newtheorem{defn}{Definition}
 \usepackage{subcaption}
-\setbeamertemplate{theorems}[numbered]
-
-%% TYPESET
-\makeatletter
-\newcommand{\leqnomode}{\tagsleft@true}
-\newcommand{\reqnomode}{\tagsleft@false}
-\makeatother
-\let\Mathcal\mathcal
 \usepackage{dutchcal}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
-\newcommand{\gr}{\operatorname{gr}}
-\newcommand{\rank}{\operatorname{rank}}
-\newcommand{\toto}{\rightrightarrows}%
-\newcommand{\F}{\Mathcal{F}}%
-\newcommand{\K}{\mathbb{K}}%
-\newcommand{\R}{\mathbb{R}}%
-\def\C{\mathbb{C}}%
-\newcommand{\dom}{\operatorname{dom}}%
-% \newcommand{\ker}{\operatorname{ker}}% already defined
-\newcommand{\im}{\operatorname{im}}%
-\newcommand{\g}{\mathcal{g}}%
-\global\long\def\MP{\text{mp}}%
+\setbeamertemplate{theorems}[numbered]
 
 \newcommand{\Image}[1]{%
     \sbox0{\includegraphics[height=0.65\paperheight]{#1}}%
