@@ -33,12 +33,12 @@
 \global\long\def\MP{\text{mp}}%
 
 \newcommand{\Image}[1]{%
-	\sbox0{\includegraphics[height=0.65\paperheight]{#1}}%
-	\ifdim\wd0 < \textwidth
-	\includegraphics[height=0.65\paperheight]{#1}%
-	\else
-	\includegraphics[width=\textwidth]{#1}%
-	\fi%
+    \sbox0{\includegraphics[height=0.65\paperheight]{#1}}%
+    \ifdim\wd0 < \textwidth
+    \includegraphics[height=0.65\paperheight]{#1}%
+  \else
+  \includegraphics[width=\textwidth]{#1}%
+  \fi%
 }
 
 \newif\iffirsttoc
@@ -72,7 +72,7 @@
 
 \begin{document}
 \begin{frame}[noframenumbering,Title]
-	\maketitle
+  \maketitle
 \end{frame}
 
 \section{Giới thiệu}
@@ -86,14 +86,13 @@
 
 \section{Tài liệu tham khảo}
 \begin{frame}{Tài liệu tham khảo}
-    \nocite{*}
-    \bibliographystyle{plainnat}
-    \bibliography{example.refs.bib}
+  \nocite{*}
+  \bibliographystyle{plainnat}
+  \bibliography{example.refs.bib}
 \end{frame}
 
 \begin{frame}{~}
-    \Large \color{hustred}{Cảm ơn mọi người đã chú ý lắng nghe!}
+  \Large \color{hustred}{Cảm ơn mọi người đã chú ý lắng nghe!}
 \end{frame}
-
 
 \end{document}
