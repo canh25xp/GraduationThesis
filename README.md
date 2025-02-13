@@ -41,3 +41,11 @@ pandoc -f markdown -t latex --wrap=preserve --top-level-division=chapter -o outl
 ```sh
 mmdc -i diagrams/usecase1.mmd -o diagrams/usecase1.png # or .pdf, .svg
 ```
+
+### Export and crop pdf
+
+```sh
+qpdf --empty --pages references/ef-epi-2024-english.pdf 4 -- figures/ef-epi-2024-english.pdf
+pdfinfo figures/ef-epi-2024-english.pdf
+pdfcrop --margins '0 0 0 -330' figures/ef-epi-2024-english.pdf figures/ef-epi-2024-english-crop.pdf
+```
