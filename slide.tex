@@ -13,6 +13,11 @@
 \usepackage{dutchcal}
 \usepackage[authoryear, comma, sort&compress]{natbib}
 
+\setbeameroption{show notes} % show notes and slides
+% \setbeameroption{hide notes} % Only slides
+% \setbeameroption{show only notes} % show only notes
+\addtobeamertemplate{note page}{}{\thispdfpagelabel{notes:\insertframenumber}}
+\setbeamertemplate{note page}[plain]
 \setbeamertemplate{theorems}[numbered]
 \setbeamertemplate{caption}[numbered]
 
