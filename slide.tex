@@ -37,19 +37,17 @@
 \firsttoctrue
 \AtBeginSubsection[]
 {
-    \begin{frame}
-        \frametitle{Table of contents}
-        \iffirsttoc
-            \tableofcontents
-            \global\firsttocfalse
-        \else
-            \tableofcontents[currentsection,
-            % hideothersubsections,
-            subsectionstyle=show/shaded/hide,
-            subsubsectionstyle=show/show/show/hide
-            ]
-        \fi
-    \end{frame}
+  \begin{frame}{Table of contents}
+    \iffirsttoc
+      \tableofcontents
+      \global\firsttocfalse
+    \else
+      \tableofcontents[currentsection,
+      subsectionstyle=show/shaded/hide,
+      subsubsectionstyle=show/show/show/hide
+      ]
+    \fi
+  \end{frame}
 }
 
 % \titlegraphic{\includegraphics[height=\logoheight]{figures/sami-v2.pdf}}
