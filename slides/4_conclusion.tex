@@ -2,8 +2,6 @@
 
 \subsection{Achievements}
 \begin{frame}{Achievements}
-  GecWeb:
-
   \begin{itemize}
     \item A web-based application for GEC that can be easily access by general public.
     \item Designed with accessibility in mind.
@@ -15,7 +13,18 @@
 \subsection{Future work}
 \begin{frame}{Future work}
   \begin{itemize}
-    \item Extends to other languages.
+    \item Deploy the system to a more realiable server.
     \item Scale the system to handle more users.
   \end{itemize}
 \end{frame}
+
+\note{
+  Although archived the initial goal of creating a web-based application for GEC, GecWeb is no where near production ready.
+
+  The backend is currently running on a low-end server, which is not enough to run all 3 models and prune to crash(which it sometimes did).
+
+  I did not take care of the security aspect of the application, such as input validation, output encoding, et
+  cetera.
+
+  As well as the performance aspect, such as caching, load balancing, et cetera.
+}
