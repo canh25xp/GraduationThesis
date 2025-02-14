@@ -70,7 +70,7 @@ To maintain accessibility, the color scheme adheres to a contrast ratio above 4.
 
 Consistency and standardization are key aspects of the interface design.
 Buttons maintain a uniform appearance with rounded corners and consistent padding, providing a visually appealing and user-friendly experience.
-The "Run" button, which triggers the grammatical error correction process, is prominently displayed in a contrasting color, making it easily identifiable.
+The ``Run'' button, which triggers the grammatical error correction process, is prominently displayed in a contrasting color, making it easily identifiable.
 Feedback messages, including error notifications and success confirmations, appear at the top of the screen, ensuring they are immediately visible to users.
 
 The color scheme follows a clean and intuitive design, primarily using shades of blue, green, and white.
@@ -186,17 +186,17 @@ This similarity is because GecWeb's design is heavily inspired by Google Transla
 \subsubsection{Base Model Selection}
 
 The user first needs to choose the base model(s).
-If the user chooses more than one base model, GecWeb will run a system combination method based on the combination method selected, as described in Chapter 3.
+If the user chooses more than one base model, GecWeb will run a system combination method based on the combination method selected, as described in Chapter~\ref{chapter:methodology}.
 
 \subsubsection{Combination Method Selection}
 
 Next, the user needs to choose the combination method.
 If the user only chooses one base system, the selected combination method is ignored.
-As mentioned earlier in Chapter 3, GecWeb includes two state-of-the-art system combination methods, ESC and MEMT.
+As mentioned earlier in Chapter~\ref{chapter:methodology}, GecWeb includes two state-of-the-art system combination methods, ESC and MEMT.
 
 \subsubsection{Output Mode}
 
-Users can choose to highlight the corrections by selecting the "Highlight corrections" box.
+Users can choose to highlight the corrections by selecting the ``Highlight corrections'' box.
 If the user chooses to highlight the corrections, text spans in the output text that are different from the input text are highlighted in green and a simple explanation of each correction can be displayed by clicking a highlighted text span.
 The appearance of highlighted corrections can be seen in Figure~\ref{fig:highlight}.
 Displaying corrections with simple explanations can help language learners to understand their mistakes better.
@@ -221,10 +221,10 @@ tokenizer.
 
 \subsubsection{Output Text Box}
 
-After a text is entered into the input text box and the "Run" button is clicked, the corrected text will appear in the output text box.
+After a text is entered into the input text box and the ``Run'' button is clicked, the corrected text will appear in the output text box.
 As the base GEC systems are expected to work on tokenized input and output, the output text needs to be detokenized to look more natural.
 Since SpaCy does not have a detokenizer and the document context of the original input may no longer be relevant after a sentence is corrected, I use Moses todetokenize a sentence.
-I found that Moses can detokenize a sentence that is tokenized by SpaCy reasonably well, only missing some cases like the detokenization of "is n't" and "are n;t" and removing spaces around hyphens.
+I found that Moses can detokenize a sentence that is tokenized by SpaCy reasonably well, only missing some cases like the detokenization of ``is n't'' and ``are n;t'' and removing spaces around hyphens.
 For these missed cases, I create simple rules to apply string replacement after Moses detokenization.
 Detokenization is not applied if the user chooses to highlight the corrections because the highlights need some room to make them clearly visible.
 
