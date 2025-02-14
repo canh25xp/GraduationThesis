@@ -33,20 +33,10 @@
   \fi%
 }
 
-\newif\iffirsttoc
-\firsttoctrue
 \AtBeginSubsection[]
 {
   \begin{frame}{Table of contents}
-    \iffirsttoc
-      \tableofcontents
-      \global\firsttocfalse
-    \else
-      \tableofcontents[currentsection,
-      subsectionstyle=show/shaded/hide,
-      subsubsectionstyle=show/show/show/hide
-      ]
-    \fi
+    \tableofcontents[currentsection, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/show/show/hide]
   \end{frame}
 }
 
@@ -69,6 +59,10 @@
   Today, I am going to present my graduation thesis, which is about Grammatical Error Correction Using Machine Learning Web Application.
   My advisor is Professor Dương Tấn Nghĩa. %TODO: does it need to be mentioned here?
 }
+
+\begin{frame}{Table of Contents}
+  \tableofcontents
+\end{frame}
 
 \input{slides/1_introduction}
 \input{slides/2_methodology}
