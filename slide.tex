@@ -57,6 +57,16 @@
   \end{frame}
 }
 
+% NOTE: Important! Fix text is not visible when using show notes on second screen
+% https://tex.stackexchange.com/questions/232168/normal-text-is-invisible-when-using-beamer-with-notes-and-xelatex
+\makeatletter 
+\def\beamer@framenotesbegin{% at beginning of slide
+     \usebeamercolor[fg]{normal text}
+      \gdef\beamer@noteitems{}% 
+      \gdef\beamer@notes{}% 
+}
+\makeatother
+
 % \titlegraphic{\includegraphics[height=\logoheight]{figures/sami-v2.pdf}}
 \title{Graduation Thesis}
 \subtitle{Grammatical Error Correction Using Machine Learning\\Web Application (GecWeb)}
